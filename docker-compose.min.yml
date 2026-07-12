@@ -1,0 +1,64 @@
+# MCP Governor — Minimal Deployment
+# Core components only (4 containers)
+# Usage: docker compose -f docker-compose.min.yml up -d
+
+services:
+  mcp-governor:
+    image: mcp-governor/mcp-governor:community-latest
+    container_name: mcp-governor
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - AUDIT_LOG_DIR=/var/log/mcp-governor
+      - OPA_ADDR=http://opa:8181
+    volumes:
+      - governor-logs:/var/log/mcp-governor
+    depends_on:
+      - opa
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+  opa:
+    image: openpolicyagent/opa:latest
+    container_name: mcp-governor-opa
+    command:
+      - "run"
+      - "-s"
+      - "--addr=0.0.0.0:8181"
+      - "--log-level=info"
+      - "/policies"
+    volumes:
+      - ./policies:/policies:ro
+    ports:
+      - "8181:8181"
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+  erp-api:
+    image: mcp-governor/mcp-erp-api:community-latest
+    container_name: mcp-erp-api
+    ports:
+      - "9003:9003"
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+  crm-api:
+    image: mcp-governor/mcp-crm-api:community-latest
+    container_name: mcp-crm-api
+    ports:
+      - "9002:9002"
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+volumes:
+  governor-logs:
+
+networks:
+  mcp-net:
+    driver: bridge
