@@ -7,7 +7,10 @@
 set -euo pipefail
 
 GATEWAY="http://localhost:8080"
-TOKEN=$(python3 -c "import jwt,time; print(jwt.encode({'sub':'demo_user','role':'user','exp':time.time()+3600},'dev-secret-change-me',algorithm='HS256'))" 2>/dev/null || echo "")
+
+# 从 .env 读取 JWT_SECRET_KEY
+JWT_SECRET=$(grep -E "^JWT_SECRET_KEY=" .env 2>/dev/null | cut -d'=' -f2 || echo "dev-secret-change-me")
+TOKEN=$(python3 -c "import jwt,time; print(jwt.encode({'sub':'demo_user','role':'user','exp':time.time()+3600},'${JWT_SECRET}',algorithm='HS256'))" 2>/dev/null || echo "")
 
 echo "╔══════════════════════════════════════════════════════════════╗"
 echo "║           MCP Governor Docker Demo                          ║"
