@@ -1,0 +1,126 @@
+# MCP Governor
+
+> **AI 工具的统一治理中枢** — 让企业安全、合规、可控地接入 AI Agent 能力
+
+[![License](https://img.shields.io/badge/license-MCP%20Governor-blue.svg)](LICENSE)
+
+## Why MCP Governor?
+
+你的 AI Agent 正在调用内部 ERP、CRM、外部地图 API，但你可能不知道：
+
+- 🔓 **谁能调什么？** — Agent 有没有越权访问不该看的数据？
+- 🔓 **数据安全吗？** — 客户手机号、身份证在 AI 调用中是否被泄露？
+- 🔓 **出了事能追溯吗？** — AI 调用出问题了，你知道是谁、调了什么、为什么被拦截吗？
+
+MCP Governor 解决这三个问题。它是 AI Agent 与企业**内外部资源**之间的安全网关，统一整合 REST/gRPC/MCP 多协议接入，并提供注入防护、PII 脱敏、审计追溯。
+
+**企事业单位 AI 治理最短路径：3 行命令部署，10 分钟接入，零代码安全合规。**
+
+## Quick Start
+
+```bash
+git clone https://github.com/OntarioLT/mcp-governor.git
+cd mcp-governor
+cp .env.example .env && vim .env   # 填入 LLM_API_KEY
+docker compose -f docker-compose.min.yml up -d
+curl http://localhost:8080/health  # → {"status": "ok"}
+```
+
+> 详细部署说明请参考 [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
+
+## Core Capabilities
+
+### 🛡️ 安全治理
+
+| 能力 | 说明 |
+|------|------|
+| **注入防护** | 848 条 Aho-Corasick 规则（7 类别），覆盖 prompt 注入、间接注入、编码绕过、中文越狱 |
+| **PII 脱敏** | 自动识别并屏蔽身份证、手机号、银行卡、邮箱（中文正则，< 3ms） |
+| **审计追溯** | 结构化审计日志 + Agent 身份 + Langfuse LLM 调用追踪（Enterprise: Ed25519 签名链） |
+| **零信任鉴权** | JWT + API Key + OAuth 2.1/OIDC + OPA 策略引擎，按 Agent/角色控制工具访问 |
+| **Agent 隔离** | 按 Agent 名称（allowed_tools）和角色（OPA Rego 策略）双重过滤，最小权限原则 |
+
+### 🔌 协议适配
+
+| 能力 | 说明 |
+|------|------|
+| **REST → MCP** | 零配置将 REST API 动态代理为 MCP tools（支持 OpenAPI 自动发现） |
+| **gRPC → MCP** | .proto 反射生成 manifest + 运行时 gRPC 代理 |
+| **Streamable HTTP** | MCP 2025-03-26 标准传输，向后兼容 SSE |
+| **10+ 预配置集成** | 高德/钉钉/微信/飞书/GitHub/Slack/Notion 等 |
+
+## Demo Scenarios
+
+基于 LLM 的自动化演示，11 大场景展示完整安全治理链路：
+
+| 分类 | # | 场景 | 效果 |
+|------|---|------|------|
+| **工具路由** | 1 | 统一接入 | LLM 调用内部 ERP 查询库存，返回真实数据 |
+| | 2 | 多源聚合 | CRM + ERP + AMAP 距离计算，就近仓库发货 |
+| | 3 | REST 虚拟化 | 零配置 REST API → MCP tools |
+| **安全防护** | 4 | 注入防护 | 848 条规则拦截恶意 prompt 注入攻击 |
+| | 5 | PII 脱敏 | 客户手机号/邮箱自动屏蔽 |
+| **权限控制** | 6 | OPA 策略 | 非 admin 角色调用 `transfer_stock` 被拦截 |
+| | 7 | Agent 隔离 | hr_agent 被拒（工具无授权），user 角色被拒（无写权限） |
+| | 8 | 用户级控制 | 敏感工具按 user_id 白名单控制 |
+| **可观测性** | 9 | 审计追溯 | 结构化日志含 Agent 身份 + 调用轨迹 |
+| | 10 | 可观测性 | Prometheus + Grafana 实时监控 |
+| **流量控制** | 11 | 限流 | Token Bucket 限流（per-agent + per-tool） |
+
+## Why Us?
+
+| | MCP Governor | ContextForge (IBM) | AgentGateway |
+|---|---|---|---|
+| **注入防护** | ✅ 开箱即用 848 条规则 | ⚠️ 需自定义正则/插件 | ⚠️ 依赖外部 Guardrails |
+| **中文 PII 脱敏** | ✅ 身份证/手机/银行卡 | ⚠️ 通用 PII，需调优 | ❌ 无内置中文规则 |
+| **本土生态** | ✅ 钉钉/飞书/微信/高德 | ❌ 无国内 SaaS | ❌ 无国内 SaaS |
+| **REST/gRPC → MCP** | ✅ 零配置动态代理 | ⚠️ 需手动配置 | ⚠️ 支持 OpenAPI |
+| **细粒度鉴权** | ✅ Agent 名称 + OPA 双重隔离 | ⚠️ 标准 RBAC/SSO | ⚠️ CEL 策略引擎 |
+| **审计与追溯** | ✅ Agent 身份 + Langfuse LLM 追踪 | ⚠️ 基础日志 + OTLP | ⚠️ 仅 OTLP |
+
+**MCP Governor 的独特定位**：开箱即用的安全治理 + 本土化中文生态。对企事业单位而言，无需二次开发即可实现 AI 工具的合规管控。
+
+## External Platform Integration
+
+任何 MCP 兼容平台（DIFY、Claude Desktop、自研 Agent）可直连 Gateway：
+
+```json
+{
+  "mcpServers": {
+    "mcp-governor": {
+      "url": "http://<gateway-host>:8080/mcp",
+      "transport": "streamable-http",
+      "headers": {
+        "Authorization": "ApiKey <your-api-key>"
+      }
+    }
+  }
+}
+```
+
+### 认证方式
+
+| 方式 | Header 格式 | 适用场景 |
+|------|------------|---------|
+| **API Key** | `Authorization: ApiKey <key>` | 外部平台对接（固定 key，不过期） |
+| **JWT** | `Authorization: Bearer <token>` | 内部 Demo、有有效期的场景 |
+| **OAuth 2.1** | `Authorization: Bearer <token>` | 企业 IdP 集成（Enterprise 版增加 SSO） |
+
+## About
+
+> **Lei Tian — AI Architect by profession, Traveler & Poet by passion.**
+
+MCP Governor 是一个完整的 AI 治理平台，包含：
+
+- **免费功能**：注入防护 + PII 脱敏 + 审计追溯 + REST/gRPC/MCP 多协议接入 + Admin UI 管理
+- **商业增强功能**（需单独签署商业授权协议）：OAuth/OIDC SSO（Admin UI增强） · Ed25519 审计签名 · Chain Detector（链路风险检测）等
+- **源码授权**（需另行签署协议）：源码使用及二次开发，限客户内部部署
+- 企业定制部署 + SLA 支持
+
+📬 企业服务（含商业授权/定制/SLA）：关注微信公众号「微碰旅行」→ 菜单栏「更多」→「企业服务」即可对接。
+
+![微信公众号二维码](assets/wemeet_travel.jpg)
+
+见 [LICENSE](LICENSE) 了解授权条款。
+
+Copyright 2026 Lei Tian
