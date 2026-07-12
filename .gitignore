@@ -27,6 +27,7 @@ env/
 # IDE
 .vscode/
 .idea/
+.mimocode/
 *.swp
 *.swo
 
