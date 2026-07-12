@@ -1,0 +1,26 @@
+# 治理配置文件
+# 定义 per-tool 级别的安全策略
+
+defaults:
+  rate_limit: 1000/hour
+  timeout: 30s
+
+tools:
+  "erp.transfer_stock":
+    rate_limit: 100/hour
+    sensitive_params:
+      - "quantity"
+      - "from_warehouse"
+      - "to_warehouse"
+    timeout: 60s
+
+  "crm.create_order":
+    rate_limit: 200/hour
+    sensitive_params:
+      - "price"
+      - "amount"
+    timeout: 30s
+
+  "erp.query_stock":
+    rate_limit: 5000/hour
+    timeout: 10s
