@@ -1,0 +1,139 @@
+# MCP Governor — Full Stack Deployment
+# Includes: Gateway + OPA + ERP + CRM + Prometheus + Grafana + Langfuse + Admin UI
+# Usage: docker compose up -d
+
+services:
+  mcp-governor:
+    image: mcp-governor/mcp-governor:community-latest
+    container_name: mcp-governor
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - AUDIT_LOG_DIR=/var/log/mcp-governor
+      - OPA_ADDR=http://opa:8181
+    volumes:
+      - governor-logs:/var/log/mcp-governor
+    depends_on:
+      - opa
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+  opa:
+    image: openpolicyagent/opa:latest
+    container_name: mcp-governor-opa
+    command:
+      - "run"
+      - "-s"
+      - "--addr=0.0.0.0:8181"
+      - "--log-level=info"
+      - "/policies"
+    volumes:
+      - ./policies:/policies:ro
+    ports:
+      - "8181:8181"
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+  erp-api:
+    image: mcp-governor/mcp-erp-api:community-latest
+    container_name: mcp-erp-api
+    ports:
+      - "9003:9003"
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+  crm-api:
+    image: mcp-governor/mcp-crm-api:community-latest
+    container_name: mcp-crm-api
+    ports:
+      - "9002:9002"
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: mcp-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: mcp-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SECURITY_ALLOW_EMBEDDING=true
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+    volumes:
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+  langfuse:
+    image: langfuse/langfuse:2
+    container_name: mcp-langfuse
+    ports:
+      - "3001:3000"
+    environment:
+      - DATABASE_URL=postgresql://langfuse:langfuse@langfuse-db:5432/langfuse
+      - NEXTAUTH_URL=http://localhost:3001
+      - NEXTAUTH_SECRET=mcp-governor-demo-secret
+      - SALT=mcp-governor-demo-salt
+    depends_on:
+      - langfuse-db
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+  langfuse-db:
+    image: postgres:15
+    container_name: mcp-langfuse-db
+    environment:
+      - POSTGRES_USER=langfuse
+      - POSTGRES_PASSWORD=langfuse
+      - POSTGRES_DB=langfuse
+    volumes:
+      - langfuse-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+  admin:
+    image: mcp-governor/mcp-governor-admin:community-latest
+    container_name: mcp-admin
+    ports:
+      - "3002:3002"
+    environment:
+      - VITE_API_URL=http://mcp-governor:8080
+    depends_on:
+      - mcp-governor
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+volumes:
+  governor-logs:
+  prometheus-data:
+  grafana-data:
+  langfuse-data:
+
+networks:
+  mcp-net:
+    driver: bridge
