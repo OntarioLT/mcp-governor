@@ -1,0 +1,50 @@
+# Source code — NEVER commit these
+*.py
+*.pyc
+*.pyo
+*.pyx
+*.pxd
+*.so
+*.dylib
+*.dll
+*.js
+*.ts
+*.tsx
+*.jsx
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+node_modules/
+__pycache__/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
+
+# Secrets — NEVER commit
+.env
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Demo/data
+data/
+logs/
+*.log
