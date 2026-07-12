@@ -15,7 +15,24 @@ git clone https://github.com/OntarioLT/mcp-governor.git
 cd mcp-governor
 ```
 
-### 2. 配置环境变量
+### 2. 启动服务
+
+```bash
+docker compose -f docker-compose.min.yml up -d
+```
+
+### 3. 验证部署
+
+```bash
+curl http://localhost:8080/health
+# 期望输出: {"status":"ok","version":"1.0.0"}
+```
+
+## 完整部署（含监控）
+
+如需 Prometheus + Grafana 监控、Langfuse LLM 追踪和 Admin UI 管理界面：
+
+### 1. 配置环境变量
 
 ```bash
 cp .env.example .env
@@ -27,26 +44,15 @@ cp .env.example .env
 LLM_API_KEY=sk-your-key-here
 ```
 
-### 3. 启动服务
-
-```bash
-docker compose -f docker-compose.min.yml up -d
-```
-
-### 4. 验证部署
-
-```bash
-curl http://localhost:8080/health
-# 期望输出: {"status":"ok","version":"1.0.0"}
-```
-
-## 完整部署（含监控）
-
-如需 Prometheus + Grafana 监控和 Langfuse LLM 追踪：
+### 2. 启动服务
 
 ```bash
 docker compose up -d
 ```
+
+### 3. 访问 Admin UI
+
+浏览器打开 http://localhost:3002 即可访问管理界面。
 
 ### 服务端口
 
