@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: "mcp-governor"
+    static_configs:
+      - targets: ["mcp-governor:8080"]
+    metrics_path: "/metrics"
