@@ -49,9 +49,20 @@ curl http://localhost:8080/health  # → {"status": "ok"}
 | **Streamable HTTP** | MCP 2025-03-26 标准传输，向后兼容 SSE |
 | **10+ 预配置集成** | 高德/钉钉/微信/飞书/GitHub/Slack/Notion 等 |
 
-## Demo Scenarios
+## Demo
 
-基于 LLM 的自动化演示，11 大场景展示完整安全治理链路：
+### 快速体验（推荐）
+
+```bash
+docker compose -f docker-compose.min.yml up -d
+./demo/docker-demo.sh
+```
+
+无需 Python 环境，只需 Docker 即可体验注入检测、PII 脱敏、OPA 策略等核心功能。
+
+详见 [demo/README.md](demo/README.md)
+
+### 完整场景（需要 LLM）
 
 | 分类 | # | 场景 | 效果 |
 |------|---|------|------|
