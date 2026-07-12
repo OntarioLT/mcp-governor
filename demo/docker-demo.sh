@@ -64,12 +64,12 @@ echo ""
 # ═══════════════════════════════════════════════════════════════
 echo ">>> [4/5] PII 脱敏演示"
 echo "查询客户信息（应显示脱敏后的手机号和邮箱）:"
-curl -s ${GATEWAY}/mcp \
+RESULT=$(curl -s ${GATEWAY}/mcp \
   -H "Content-Type: application/json" \
   -H "Accept: application/json, text/event-stream" \
   -H "Authorization: Bearer ${TOKEN}" \
-  -d '{"jsonrpc":"2.0","method":"tools/call","params":{"name":"crm.get_customer","arguments":{"customer_id":"C001"}},"id":3}' | \
-  python3 -c "import sys,json; r=json.load(sys.stdin); content=r.get('result',{}).get('content',[{}])[0].get('text',''); print(content[:300])"
+  -d '{"jsonrpc":"2.0","method":"tools/call","params":{"name":"crm.get_customer","arguments":{"customer_id":"C001"}},"id":3}')
+echo "${RESULT}" | python3 -c "import sys,json; r=json.load(sys.stdin); content=r.get('result',{}).get('content',[{}])[0].get('text',''); print(content[:300])" 2>/dev/null || echo "${RESULT}"
 echo ""
 
 # ═══════════════════════════════════════════════════════════════
@@ -77,12 +77,12 @@ echo ""
 # ═══════════════════════════════════════════════════════════════
 echo ">>> [5/5] OPA 策略演示"
 echo "非 admin 角色调用 transfer_stock（应被拒绝）:"
-curl -s ${GATEWAY}/mcp \
+RESULT=$(curl -s ${GATEWAY}/mcp \
   -H "Content-Type: application/json" \
   -H "Accept: application/json, text/event-stream" \
   -H "Authorization: Bearer ${TOKEN}" \
-  -d '{"jsonrpc":"2.0","method":"tools/call","params":{"name":"erp.transfer_stock","arguments":{"sku":"SKU001","from_warehouse":"SH-01","to_warehouse":"BJ-02","quantity":10}},"id":4}' | \
-  python3 -c "import sys,json; d=json.load(sys.stdin); print('✅ 已拦截: ' + d.get('error',{}).get('message','')[:50] if 'error' in d else '❌ 未拦截')"
+  -d '{"jsonrpc":"2.0","method":"tools/call","params":{"name":"erp.transfer_stock","arguments":{"sku":"SKU001","from_warehouse":"SH-01","to_warehouse":"BJ-02","quantity":10}},"id":4}')
+echo "${RESULT}" | python3 -c "import sys,json; d=json.load(sys.stdin); print('✅ 已拦截: ' + d.get('error',{}).get('message','')[:50] if 'error' in d else '❌ 未拦截')" 2>/dev/null || echo "${RESULT}"
 echo ""
 
 echo "╔══════════════════════════════════════════════════════════════╗"
