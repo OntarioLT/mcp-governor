@@ -14,6 +14,16 @@ echo "║           MCP Governor Docker Demo                          ║"
 echo "╚══════════════════════════════════════════════════════════════╝"
 echo ""
 
+# 检查服务是否运行
+echo ">>> 检查 Gateway 状态..."
+if ! curl -s ${GATEWAY}/health > /dev/null 2>&1; then
+    echo "❌ Gateway 未运行！请先启动服务："
+    echo "   docker compose -f docker-compose.min.yml up -d"
+    exit 1
+fi
+echo "   ✓ Gateway 运行正常"
+echo ""
+
 # ═══════════════════════════════════════════════════════════════
 # 1. 健康检查
 # ═══════════════════════════════════════════════════════════════
