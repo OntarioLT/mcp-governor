@@ -54,11 +54,12 @@ curl http://localhost:8080/health  # → {"status": "ok"}
 ### 快速体验（推荐）
 
 ```bash
+touch .env  # 创建空环境变量文件
 docker compose -f docker-compose.min.yml up -d
 ./demo/docker-demo.sh
 ```
 
-无需 Python 环境，只需 Docker 即可体验注入检测、PII 脱敏、OPA 策略等核心功能。
+无需 Python 环境和 LLM API Key，只需 Docker 即可体验注入检测、PII 脱敏、OPA 策略等核心功能。
 
 详见 [demo/README.md](demo/README.md)
 

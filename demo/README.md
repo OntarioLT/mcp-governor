@@ -8,9 +8,11 @@
 
 ```bash
 cd mcp-governor
-cp .env.example .env && vim .env  # 填入 LLM_API_KEY（可选）
+touch .env  # Docker Demo 不需要 LLM，创建空文件即可
 docker compose -f docker-compose.min.yml up -d
 ```
+
+> 如需完整 LLM 功能，参考 `.env.example` 配置 `LLM_API_KEY`
 
 ### 2. 运行 Demo
 
