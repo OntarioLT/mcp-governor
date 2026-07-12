@@ -4,7 +4,7 @@
 
 services:
   mcp-governor:
-    image: mcp-governor/mcp-governor:community-latest
+    image: ontariolt/mcp-governor:community-latest
     container_name: mcp-governor
     ports:
       - "8080:8080"
@@ -39,7 +39,7 @@ services:
       - mcp-net
 
   erp-api:
-    image: mcp-governor/mcp-erp-api:community-latest
+    image: ontariolt/mcp-erp-api:community-latest
     container_name: mcp-erp-api
     ports:
       - "9003:9003"
@@ -48,7 +48,7 @@ services:
       - mcp-net
 
   crm-api:
-    image: mcp-governor/mcp-crm-api:community-latest
+    image: ontariolt/mcp-crm-api:community-latest
     container_name: mcp-crm-api
     ports:
       - "9002:9002"
