@@ -58,19 +58,6 @@ services:
     networks:
       - mcp-net
 
-  admin:
-    image: ontariolt/mcp-governor-admin:community-latest
-    container_name: mcp-admin
-    ports:
-      - "3002:3002"
-    environment:
-      - VITE_API_URL=http://mcp-governor:8080
-    depends_on:
-      - mcp-governor
-    restart: unless-stopped
-    networks:
-      - mcp-net
-
 volumes:
   governor-logs:
 
