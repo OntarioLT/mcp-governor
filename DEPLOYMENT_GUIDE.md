@@ -125,5 +125,6 @@ curl http://localhost:9002/health
 - Ed25519 审计签名
 - Chain Detector 链路风险检测
 - 源码授权与二次开发
+- 企业定制部署 + SLA 支持
 
 📬 关注微信公众号「微碰旅行」→ 菜单栏「更多」→「企业服务」
