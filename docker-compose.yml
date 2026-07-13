@@ -1,10 +1,13 @@
 # MCP Governor — Full Stack Deployment
 # Includes: Gateway + OPA + ERP + CRM + Prometheus + Grafana + Langfuse + Admin UI
 # Usage: docker compose up -d
+#
+# 社区版: docker compose up -d
+# 企业版: MCP_EDITION=enterprise docker compose up -d
 
 services:
   mcp-governor:
-    image: ontariolt/mcp-governor:community-latest
+    image: ontariolt/mcp-governor:${MCP_EDITION:-community}-latest
     container_name: mcp-governor
     ports:
       - "8080:8080"

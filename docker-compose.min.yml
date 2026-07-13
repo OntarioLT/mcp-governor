@@ -1,10 +1,13 @@
 # MCP Governor — Minimal Deployment
-# Core components only (4 containers)
+# Core components only (5 containers)
 # Usage: docker compose -f docker-compose.min.yml up -d
+#
+# 社区版: docker compose -f docker-compose.min.yml up -d
+# 企业版: MCP_EDITION=enterprise docker compose -f docker-compose.min.yml up -d
 
 services:
   mcp-governor:
-    image: ontariolt/mcp-governor:community-latest
+    image: ontariolt/mcp-governor:${MCP_EDITION:-community}-latest
     container_name: mcp-governor
     ports:
       - "8080:8080"
