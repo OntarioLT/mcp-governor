@@ -50,7 +50,7 @@ services:
       - mcp-net
 
   erp-api:
-    image: ${ENTERPRISE_REGISTRY:-registry.cn-hangzhou.aliyuncs.com/your-repo}/mcp-erp-api:enterprise-latest
+    image: ontariolt/mcp-erp-api:community-latest
     container_name: mcp-erp-api
     ports:
       - "9003:9003"
@@ -59,7 +59,7 @@ services:
       - mcp-net
 
   crm-api:
-    image: ${ENTERPRISE_REGISTRY:-registry.cn-hangzhou.aliyuncs.com/your-repo}/mcp-crm-api:enterprise-latest
+    image: ontariolt/mcp-crm-api:community-latest
     container_name: mcp-crm-api
     ports:
       - "9002:9002"
@@ -68,7 +68,7 @@ services:
       - mcp-net
 
   admin:
-    image: ${ENTERPRISE_REGISTRY:-registry.cn-hangzhou.aliyuncs.com/your-repo}/mcp-governor-admin:enterprise-latest
+    image: ontariolt/mcp-governor-admin:community-latest
     container_name: mcp-admin
     ports:
       - "8080:8080"
