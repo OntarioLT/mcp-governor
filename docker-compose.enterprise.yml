@@ -1,0 +1,88 @@
+# MCP Governor — Enterprise Deployment
+# 从私有 Registry 拉取企业版镜像
+# Usage: docker compose -f docker-compose.enterprise.yml up -d
+#
+# 前置条件：
+#   1. 从商务获取 License 文件 (license.key)
+#   2. 将 License 文件放到当前目录
+#   3. 设置私有 Registry（可选，默认使用阿里云 ACR）
+#
+# 设置私有 Registry：
+#   export ENTERPRISE_REGISTRY=registry.cn-hangzhou.aliyuncs.com/your-namespace
+
+services:
+  mcp-governor:
+    image: ${ENTERPRISE_REGISTRY:-registry.cn-hangzhou.aliyuncs.com/your-repo}/mcp-governor:enterprise-latest
+    container_name: mcp-governor
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - AUDIT_LOG_DIR=/var/log/mcp-governor
+      - OPA_ADDR=http://opa:8181
+      - MCP_LICENSE_STRICT=true
+    volumes:
+      - governor-logs:/var/log/mcp-governor
+      - ./config:/app/config:ro
+      - ./policies:/app/policies:ro
+    depends_on:
+      - opa
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+  opa:
+    image: openpolicyagent/opa:latest
+    container_name: mcp-governor-opa
+    command:
+      - "run"
+      - "-s"
+      - "--addr=0.0.0.0:8181"
+      - "--log-level=info"
+      - "/policies"
+    volumes:
+      - ./policies:/policies:ro
+    ports:
+      - "8181:8181"
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+  erp-api:
+    image: ${ENTERPRISE_REGISTRY:-registry.cn-hangzhou.aliyuncs.com/your-repo}/mcp-erp-api:enterprise-latest
+    container_name: mcp-erp-api
+    ports:
+      - "9003:9003"
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+  crm-api:
+    image: ${ENTERPRISE_REGISTRY:-registry.cn-hangzhou.aliyuncs.com/your-repo}/mcp-crm-api:enterprise-latest
+    container_name: mcp-crm-api
+    ports:
+      - "9002:9002"
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+  admin:
+    image: ${ENTERPRISE_REGISTRY:-registry.cn-hangzhou.aliyuncs.com/your-repo}/mcp-governor-admin:enterprise-latest
+    container_name: mcp-admin
+    ports:
+      - "3002:3002"
+    environment:
+      - VITE_API_URL=http://mcp-governor:8080
+    depends_on:
+      - mcp-governor
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+volumes:
+  governor-logs:
+
+networks:
+  mcp-net:
+    driver: bridge

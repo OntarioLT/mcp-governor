@@ -123,14 +123,62 @@ curl http://localhost:9002/health
 
 确保使用正确的 JWT Secret（默认: `dev-secret-change-me`）。
 
-## 企业版
+## 企业版部署
 
-如需以下商业功能，请联系商务：
+企业版提供完整的商业功能，包括 OAuth SSO、Ed25519 审计签名、Chain Detector 等。
 
-- OAuth/OIDC SSO 集成
-- Ed25519 审计签名
-- Chain Detector 链路风险检测
-- 源码授权与二次开发
-- 企业定制部署 + SLA 支持
+### 前置条件
 
-📬 关注微信公众号「微碰旅行」→ 菜单栏「更多」→「企业服务」
+1. 从商务获取 License 文件 (`license.key`)
+2. 获取私有 Registry 访问权限
+
+### 部署步骤
+
+#### 1. 配置私有 Registry
+
+```bash
+export ENTERPRISE_REGISTRY=registry.cn-hangzhou.aliyuncs.com/your-namespace
+docker login registry.cn-hangzhou.aliyuncs.com
+```
+
+#### 2. 配置环境变量
+
+```bash
+cp .env.example .env
+```
+
+编辑 `.env`，添加 License：
+
+```env
+LLM_API_KEY=sk-your-key-here
+MCP_GOVERNOR_LICENSE=<your-license-key>
+```
+
+#### 3. 启动服务
+
+```bash
+docker compose -f docker-compose.enterprise.yml up -d
+```
+
+#### 4. 验证企业版
+
+```bash
+curl -s http://localhost:8080/config/enterprise
+# 期望输出: {"enterprise": true, "features": {"oauth": true, ...}}
+```
+
+### 企业版 vs 社区版
+
+| 功能 | 社区版 | 企业版 |
+|------|--------|--------|
+| 注入防护 | ✅ | ✅ |
+| PII 脱敏 | ✅ | ✅ |
+| 审计追溯 | ✅ | ✅ + Ed25519 签名 |
+| 鉴权 | JWT + API Key | + OAuth 2.1/OIDC SSO |
+| Admin UI | 基础版 | + 完整功能 |
+
+### 获取企业版 License
+
+📬 企业服务（含商业授权/定制/SLA）：
+🌐 Global: recursiontian@gmail.com (Response within 24-48h on weekdays)
+🇨🇳 国内联系: 关注我的个人公众号「微碰旅行」→ 菜单栏「更多」→「企业服务」
