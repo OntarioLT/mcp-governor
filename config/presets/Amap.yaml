@@ -1,7 +1,7 @@
 name: Amap
 description: "高德地图 MCP Server — 地理编码、路线规划、POI 搜索"
 transport: http
-url_template: "https://mcp.amap.com/sse?key=${api_key}"
+url_template: "https://mcp.amap.com/mcp?key=${api_key}"
 auth_type: none
 default_tools:
   - name: "maps_geo"
