@@ -137,9 +137,7 @@ docker compose -f docker-compose.min.yml up -d
 
 > 💡 企业版镜像需联系商务获取私有 Registry 访问权限。
 >
-> 📬 企业服务（含商业授权/定制/SLA）：
-> &emsp;Global: recursiontian@gmail.com (Response within 24-48h on weekdays)
-> &emsp;国内联系: 关注我的个人公众号「微碰旅行」→ 菜单栏「更多」→「企业服务」
+> 📬 企业服务（含商业授权/定制/SLA）：<br>&emsp;Global: recursiontian@gmail.com (Response within 24-48h on weekdays)<br>&emsp;国内联系: 关注我的个人公众号「微碰旅行」→ 菜单栏「更多」→「企业服务」
 
 ## About
 
@@ -152,9 +150,7 @@ MCP Governor 是一个完整的 AI 治理平台，包含：
 - **源码授权**（需另行签署协议）：源码使用及二次开发，限客户内部部署
 - 企业定制部署 + SLA 支持
 
-📬 企业服务（含商业授权/定制/SLA）：
-&emsp;Global: recursiontian@gmail.com (Response within 24-48h on weekdays)
-&emsp;国内联系: 关注我的个人公众号「微碰旅行」→ 菜单栏「更多」→「企业服务」
+📬 企业服务（含商业授权/定制/SLA）：<br>&emsp;Global: recursiontian@gmail.com (Response within 24-48h on weekdays)<br>&emsp;国内联系: 关注我的个人公众号「微碰旅行」→ 菜单栏「更多」→「企业服务」
 
 ![微信公众号二维码](assets/wemeet_travel.jpg)
 

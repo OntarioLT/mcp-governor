@@ -179,6 +179,4 @@ curl -s http://localhost:8080/config/enterprise
 
 ### 获取企业版 License
 
-📬 企业服务（含商业授权/定制/SLA）：
-&emsp;Global: recursiontian@gmail.com (Response within 24-48h on weekdays)
-&emsp;国内联系: 关注我的个人公众号「微碰旅行」→ 菜单栏「更多」→「企业服务」
+📬 企业服务（含商业授权/定制/SLA）：<br>&emsp;Global: recursiontian@gmail.com (Response within 24-48h on weekdays)<br>&emsp;国内联系: 关注我的个人公众号「微碰旅行」→ 菜单栏「更多」→「企业服务」
