@@ -67,62 +67,6 @@ docker compose up -d
 | Langfuse | 3001 | LLM 追踪 |
 | Admin UI | 8080 | 管理界面 |
 
-## 对接 AI Agent
-
-### Claude Desktop / DIFY / 自研 Agent
-
-在 MCP 客户端配置中添加：
-
-```json
-{
-  "mcpServers": {
-    "mcp-governor": {
-      "url": "http://<your-host>:7680/mcp",
-      "transport": "streamable-http",
-      "headers": {
-        "Authorization": "ApiKey <your-api-key>"
-      }
-    }
-  }
-}
-```
-
-### 认证方式
-
-| 方式 | Header 格式 | 适用场景 |
-|------|------------|---------|
-| API Key | `Authorization: ApiKey <key>` | 外部平台对接 |
-| JWT | `Authorization: Bearer <token>` | 内部测试 |
-
-## 配置 Agent 权限
-
-编辑 `config/agents.yaml`：
-
-```yaml
-agents:
-  my_agent:
-    api_key: "my-secret-key"
-    allowed_tools:
-      - "erp.query_stock"
-      - "crm.get_customer"
-    rate_limit: 1000/hour
-```
-
-## 常见问题
-
-### Gateway 连接后端失败
-
-确保 ERP/CRM 服务已启动：
-
-```bash
-curl http://localhost:9003/health
-curl http://localhost:9002/health
-```
-
-### JWT 认证失败
-
-确保使用正确的 JWT Secret（默认: `dev-secret-change-me`）。
-
 ## 企业版部署
 
 企业版提供完整的商业功能，包括 OAuth SSO、Ed25519 审计签名、Chain Detector 等。
@@ -180,3 +124,59 @@ curl -s http://localhost:7680/config/enterprise
 ### 获取企业版 License
 
 📬 企业服务（含商业授权/定制/SLA）：<br>&emsp;Global: recursiontian@gmail.com (Response within 24-48h on weekdays)<br>&emsp;国内联系: 关注我的个人公众号「微碰旅行」→ 菜单栏「更多」→「企业服务」
+
+## 对接 AI Agent
+
+### Claude Desktop / DIFY / 自研 Agent
+
+在 MCP 客户端配置中添加：
+
+```json
+{
+  "mcpServers": {
+    "mcp-governor": {
+      "url": "http://<your-host>:7680/mcp",
+      "transport": "streamable-http",
+      "headers": {
+        "Authorization": "ApiKey <your-api-key>"
+      }
+    }
+  }
+}
+```
+
+### 认证方式
+
+| 方式 | Header 格式 | 适用场景 |
+|------|------------|---------|
+| API Key | `Authorization: ApiKey <key>` | 外部平台对接 |
+| JWT | `Authorization: Bearer <token>` | 内部测试 |
+
+## 配置 Agent 权限
+
+编辑 `config/agents.yaml`：
+
+```yaml
+agents:
+  my_agent:
+    api_key: "my-secret-key"
+    allowed_tools:
+      - "erp.query_stock"
+      - "crm.get_customer"
+    rate_limit: 1000/hour
+```
+
+## 常见问题
+
+### Gateway 连接后端失败
+
+确保 ERP/CRM 服务已启动：
+
+```bash
+curl http://localhost:9003/health
+curl http://localhost:9002/health
+```
+
+### JWT 认证失败
+
+确保使用正确的 JWT Secret（默认: `dev-secret-change-me`）。
