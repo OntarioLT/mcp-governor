@@ -118,6 +118,27 @@ docker compose -f docker-compose.min.yml up -d
 | **JWT** | `Authorization: Bearer <token>` | 内部 Demo、有有效期的场景 |
 | **OAuth 2.1** | `Authorization: Bearer <token>` | 企业 IdP 集成（Enterprise 版增加 SSO） |
 
+## Editions
+
+| 功能 | Community（社区版） | Enterprise（企业版） |
+|------|---------------------|----------------------|
+| **注入防护** | ✅ 848 条 Aho-Corasick 规则 | ✅ 同社区版 |
+| **PII 脱敏** | ✅ 身份证/手机号/邮箱/银行卡 | ✅ 同社区版 |
+| **审计追溯** | ✅ 结构化日志 + Agent 身份 | ✅ + Ed25519 签名链 |
+| **鉴权** | ✅ JWT + API Key | ✅ + OAuth 2.1/OIDC SSO |
+| **OPA 策略** | ✅ 角色权限控制 | ✅ 同社区版 |
+| **REST → MCP** | ✅ 零配置动态代理 | ✅ 同社区版 |
+| **Admin UI** | ✅ 基础管理界面 | ✅ + OAuth SSO 登录 |
+| **Chain Detector** | ❌ | ✅ 链路风险检测 |
+| **License 校验** | ✅ 社区版 License | ✅ 企业版 License |
+| **源码** | ❌ 闭源分发 | ❌ 闭源分发（可选购源码授权） |
+| **镜像来源** | Docker Hub (`ontariolt/`) | 私有 Registry（联系商务） |
+| **定价** | 免费 | 商业授权 |
+
+> 💡 企业版镜像需联系商务获取私有 Registry 访问权限。
+>
+> 📬 商务对接：关注微信公众号「微碰旅行」→ 菜单栏「更多」→「企业服务」
+
 ## About
 
 > **Lei Tian — AI Architect by profession, Traveler & Poet by passion.**
