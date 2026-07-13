@@ -1,0 +1,15 @@
+name: Feishu
+description: "飞书 MCP Server — 文档、多维表格、消息"
+transport: http
+url_template: "https://open.feishu.cn/mcp"
+auth_type: api_key
+auth_header: "Authorization"
+auth_template: "Bearer ${api_key}"
+default_tools:
+  - name: "send_message"
+    description: "发送消息"
+  - name: "list_docs"
+    description: "列出文档"
+  - name: "create_doc"
+    description: "创建文档"
+tags: ["content", "docs"]

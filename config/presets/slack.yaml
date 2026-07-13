@@ -1,0 +1,15 @@
+name: Slack
+description: "Slack MCP Server — 消息通知、频道管理"
+transport: http
+url_template: "https://slack.com/mcp"
+auth_type: api_key
+auth_header: "Authorization"
+auth_template: "Bearer ${api_key}"
+default_tools:
+  - name: "send_message"
+    description: "Send a message to a channel"
+  - name: "list_channels"
+    description: "List channels"
+  - name: "get_channel_history"
+    description: "Get channel message history"
+tags: ["comms", "im"]

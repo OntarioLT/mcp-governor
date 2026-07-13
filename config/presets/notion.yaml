@@ -1,0 +1,15 @@
+name: Notion
+description: "Notion MCP Server — 文档、数据库管理"
+transport: http
+url_template: "https://mcp.notion.com/sse"
+auth_type: api_key
+auth_header: "Authorization"
+auth_template: "Bearer ${api_key}"
+default_tools:
+  - name: "list_databases"
+    description: "List Notion databases"
+  - name: "query_database"
+    description: "Query a database"
+  - name: "create_page"
+    description: "Create a new page"
+tags: ["content", "docs"]

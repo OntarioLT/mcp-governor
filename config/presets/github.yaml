@@ -1,0 +1,19 @@
+name: GitHub
+description: "GitHub MCP Server — 代码仓库管理、Issue、PR"
+transport: http
+url_template: "https://api.github.com/mcp"
+auth_type: api_key
+auth_header: "Authorization"
+auth_template: "Bearer ${api_key}"
+default_tools:
+  - name: "list_repos"
+    description: "List repositories"
+  - name: "get_repo"
+    description: "Get repository details"
+  - name: "list_issues"
+    description: "List repository issues"
+  - name: "create_issue"
+    description: "Create a new issue"
+  - name: "list_pull_requests"
+    description: "List pull requests"
+tags: ["devops", "vcs"]

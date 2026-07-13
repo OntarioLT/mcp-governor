@@ -1,0 +1,19 @@
+name: Amap
+description: "高德地图 MCP Server — 地理编码、路线规划、POI 搜索"
+transport: http
+url_template: "https://mcp.amap.com/sse"
+auth_type: api_key
+auth_header: "X-Api-Key"
+auth_template: "${api_key}"
+default_tools:
+  - name: "maps_geo"
+    description: "地理编码：地址转经纬度"
+  - name: "maps_regeocode"
+    description: "逆地理编码：经纬度转地址"
+  - name: "maps_direction_driving"
+    description: "驾车路径规划"
+  - name: "maps_distance"
+    description: "距离测量"
+  - name: "maps_text_search"
+    description: "关键词搜索 POI"
+tags: ["mobility", "geo"]

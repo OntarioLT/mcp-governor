@@ -1,0 +1,15 @@
+name: GitLab
+description: "GitLab MCP Server — 代码仓库管理"
+transport: http
+url_template: "https://gitlab.com/api/v4/mcp"
+auth_type: api_key
+auth_header: "PRIVATE-TOKEN"
+auth_template: "${api_key}"
+default_tools:
+  - name: "list_projects"
+    description: "List projects"
+  - name: "list_issues"
+    description: "List project issues"
+  - name: "create_issue"
+    description: "Create a new issue"
+tags: ["devops", "vcs"]

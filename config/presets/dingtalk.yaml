@@ -1,0 +1,15 @@
+name: DingTalk
+description: "钉钉 MCP Server — 消息通知、审批、日程"
+transport: http
+url_template: "https://oapi.dingtalk.com/mcp"
+auth_type: api_key
+auth_header: "Authorization"
+auth_template: "Bearer ${api_key}"
+default_tools:
+  - name: "send_message"
+    description: "发送工作通知"
+  - name: "create_approval"
+    description: "创建审批实例"
+  - name: "list_approval_instances"
+    description: "获取审批实例列表"
+tags: ["comms", "im"]
