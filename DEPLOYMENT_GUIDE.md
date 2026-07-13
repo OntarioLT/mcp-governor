@@ -175,7 +175,7 @@ curl -s http://localhost:8080/config/enterprise
 | PII 脱敏 | ✅ | ✅ |
 | 审计追溯 | ✅ | ✅ + Ed25519 签名 |
 | 鉴权 | JWT + API Key | + OAuth 2.1/OIDC SSO |
-| Admin UI | 基础版 | + 完整功能 |
+| Admin UI | 基础功能 | 完整功能 |
 
 ### 获取企业版 License
 
