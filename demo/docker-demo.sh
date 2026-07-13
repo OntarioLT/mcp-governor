@@ -6,7 +6,7 @@
 
 set -euo pipefail
 
-GATEWAY="http://localhost:8080"
+GATEWAY="http://localhost:7680"
 
 # 从 .env 读取 JWT_SECRET_KEY
 JWT_SECRET=$(grep -E "^JWT_SECRET_KEY=" .env 2>/dev/null | cut -d'=' -f2 || echo "dev-secret-change-me")
