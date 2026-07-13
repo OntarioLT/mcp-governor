@@ -23,7 +23,7 @@ git clone https://github.com/OntarioLT/mcp-governor.git
 cd mcp-governor
 cp .env.example .env && vim .env   # 填入 LLM_API_KEY
 docker compose -f docker-compose.min.yml up -d
-curl http://localhost:8080/health  # → {"status": "ok"}
+curl http://localhost:7680/health  # → {"status": "ok"}
 ```
 
 > 详细部署说明请参考 [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
@@ -100,7 +100,7 @@ docker compose -f docker-compose.min.yml up -d
 {
   "mcpServers": {
     "mcp-governor": {
-      "url": "http://<gateway-host>:8080/mcp",
+      "url": "http://<gateway-host>:7680/mcp",
       "transport": "streamable-http",
       "headers": {
         "Authorization": "ApiKey <your-api-key>"

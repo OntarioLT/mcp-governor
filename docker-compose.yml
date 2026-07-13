@@ -10,7 +10,7 @@ services:
     image: ontariolt/mcp-governor:${MCP_EDITION:-community}-latest
     container_name: mcp-governor
     ports:
-      - "8080:8080"
+      - "7680:7680"
     env_file:
       - .env
     environment:
@@ -124,9 +124,9 @@ services:
     image: ontariolt/mcp-governor-admin:community-latest
     container_name: mcp-admin
     ports:
-      - "3002:3002"
+      - "8080:8080"
     environment:
-      - VITE_API_URL=http://mcp-governor:8080
+      - VITE_API_URL=http://mcp-governor:7680
     depends_on:
       - mcp-governor
     restart: unless-stopped

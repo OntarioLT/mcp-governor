@@ -24,7 +24,7 @@ docker compose -f docker-compose.min.yml up -d
 ### 3. 验证部署
 
 ```bash
-curl http://localhost:8080/health
+curl http://localhost:7680/health
 # 期望输出: {"status":"ok","version":"1.0.0"}
 ```
 
@@ -52,20 +52,20 @@ docker compose up -d
 
 ### 3. 访问 Admin UI
 
-浏览器打开 http://localhost:3002 即可访问管理界面。
+浏览器打开 http://localhost:8080 即可访问管理界面。
 
 ### 服务端口
 
 | 服务 | 端口 | 说明 |
 |------|------|------|
-| MCP Governor | 8080 | API Gateway |
+| MCP Governor | 7680 | API Gateway |
 | OPA | 8181 | 策略引擎 |
 | ERP API | 9003 | 库存服务（Demo） |
 | CRM API | 9002 | 客户服务（Demo） |
 | Prometheus | 9090 | 指标监控 |
 | Grafana | 3000 | 监控面板（admin/admin） |
 | Langfuse | 3001 | LLM 追踪 |
-| Admin UI | 3002 | 管理界面 |
+| Admin UI | 8080 | 管理界面 |
 
 ## 对接 AI Agent
 
@@ -77,7 +77,7 @@ docker compose up -d
 {
   "mcpServers": {
     "mcp-governor": {
-      "url": "http://<your-host>:8080/mcp",
+      "url": "http://<your-host>:7680/mcp",
       "transport": "streamable-http",
       "headers": {
         "Authorization": "ApiKey <your-api-key>"
@@ -163,7 +163,7 @@ docker compose -f docker-compose.enterprise.yml up -d
 #### 4. 验证企业版
 
 ```bash
-curl -s http://localhost:8080/config/enterprise
+curl -s http://localhost:7680/config/enterprise
 # 期望输出: {"enterprise": true, "features": {"oauth": true, ...}}
 ```
 
