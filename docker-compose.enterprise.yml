@@ -1,6 +1,8 @@
-# MCP Governor — Enterprise Deployment
-# 从私有 Registry 拉取企业版镜像
+# MCP Governor — Enterprise Full Stack Deployment
+# Includes: Gateway (Enterprise) + OPA + ERP + CRM + Prometheus + Grafana + Langfuse + Admin UI
 # Usage: docker compose -f docker-compose.enterprise.yml up -d
+#
+# 与社区版 docker-compose.yml 唯一区别：mcp-governor 使用 enterprise-latest 镜像
 #
 # 前置条件：
 #   1. 从商务获取 License 文件 (license.key)
@@ -80,8 +82,70 @@ services:
     networks:
       - mcp-net
 
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: mcp-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: mcp-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SECURITY_ALLOW_EMBEDDING=true
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+    volumes:
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+  langfuse:
+    image: langfuse/langfuse:2
+    container_name: mcp-langfuse
+    ports:
+      - "3001:3000"
+    environment:
+      - DATABASE_URL=postgresql://langfuse:langfuse@langfuse-db:5432/langfuse
+      - NEXTAUTH_URL=http://localhost:3001
+      - NEXTAUTH_SECRET=mcp-governor-demo-secret
+      - SALT=mcp-governor-demo-salt
+    depends_on:
+      - langfuse-db
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+  langfuse-db:
+    image: postgres:15
+    container_name: mcp-langfuse-db
+    environment:
+      - POSTGRES_USER=langfuse
+      - POSTGRES_PASSWORD=langfuse
+      - POSTGRES_DB=langfuse
+    volumes:
+      - langfuse-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
 volumes:
   governor-logs:
+  prometheus-data:
+  grafana-data:
+  langfuse-data:
 
 networks:
   mcp-net:
