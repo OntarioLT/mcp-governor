@@ -181,6 +181,6 @@ curl -s http://localhost:8080/config/enterprise
 
 📬 企业服务（含商业授权/定制/SLA）：
 
-🌐 Global: recursiontian@gmail.com (Response within 24-48h on weekdays)
+   Global: recursiontian@gmail.com (Response within 24-48h on weekdays)
 
-🇨🇳 国内联系: 关注我的个人公众号「微碰旅行」→ 菜单栏「更多」→「企业服务」
+   国内联系: 关注我的个人公众号「微碰旅行」→ 菜单栏「更多」→「企业服务」

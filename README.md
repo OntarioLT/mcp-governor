@@ -139,9 +139,9 @@ docker compose -f docker-compose.min.yml up -d
 >
 > 📬 企业服务（含商业授权/定制/SLA）：
 >
-> 🌐 Global: recursiontian@gmail.com (Response within 24-48h on weekdays)
+>    Global: recursiontian@gmail.com (Response within 24-48h on weekdays)
 >
-> 🇨🇳 国内联系: 关注我的个人公众号「微碰旅行」→ 菜单栏「更多」→「企业服务」
+>    国内联系: 关注我的个人公众号「微碰旅行」→ 菜单栏「更多」→「企业服务」
 
 ## About
 
@@ -156,9 +156,9 @@ MCP Governor 是一个完整的 AI 治理平台，包含：
 
 📬 企业服务（含商业授权/定制/SLA）：
 
-🌐 Global: recursiontian@gmail.com (Response within 24-48h on weekdays)
+   Global: recursiontian@gmail.com (Response within 24-48h on weekdays)
 
-🇨🇳 国内联系: 关注我的个人公众号「微碰旅行」→ 菜单栏「更多」→「企业服务」
+   国内联系: 关注我的个人公众号「微碰旅行」→ 菜单栏「更多」→「企业服务」
 
 ![微信公众号二维码](assets/wemeet_travel.jpg)
 
