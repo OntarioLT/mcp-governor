@@ -83,16 +83,16 @@ docker compose up -d
 
 ### 前置条件
 
-1. 从商务获取 License 文件 (`license.key`)
-2. 获取私有 Registry 访问权限
+1. 从商务获取 License Key
+2. 获取阿里云 ACR 访问权限
 
 ### 部署步骤
 
-#### 1. 配置私有 Registry
+#### 1. 登录阿里云 ACR
 
 ```bash
-export ENTERPRISE_REGISTRY=registry.cn-hangzhou.aliyuncs.com/your-namespace
-docker login registry.cn-hangzhou.aliyuncs.com
+# 使用 RAM 子账号登录（联系商务获取账号密码）
+docker login --username=mcp-governor@<your-account-id> crpi-zv48h6itqo28pfxd.cn-hangzhou.personal.cr.aliyuncs.com
 ```
 
 #### 2. 配置环境变量

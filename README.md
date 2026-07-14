@@ -2,6 +2,7 @@
 
 > **AI 工具的统一治理中枢** — 让企业安全、合规、可控地接入 AI Agent 能力
 
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MCP%20Governor-blue.svg)](LICENSE)
 
 ## Why MCP Governor?
