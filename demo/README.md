@@ -43,8 +43,8 @@ docker compose -f docker-compose.min.yml up -d
 
 | 服务 | 端口 | 说明 |
 |------|------|------|
-| MCP Gateway | 8080 | API 网关 |
+| MCP Gateway | 7680 | API 网关 |
 | OPA | 8181 | 策略引擎 |
 | ERP API | 9003 | 库存服务（Demo） |
 | CRM API | 9002 | 客户服务（Demo） |
-| Admin UI | 3002 | 管理界面 |
+| Admin UI | 8080 | 管理界面 |
