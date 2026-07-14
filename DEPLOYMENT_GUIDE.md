@@ -123,44 +123,7 @@ curl -s http://localhost:7680/config/enterprise
 
 ## 对接 AI Agent
 
-### Claude Desktop / DIFY / 自研 Agent
-
-在 MCP 客户端配置中添加：
-
-```json
-{
-  "mcpServers": {
-    "mcp-governor": {
-      "url": "http://<your-host>:7680/mcp",
-      "transport": "streamable-http",
-      "headers": {
-        "Authorization": "ApiKey <your-api-key>"
-      }
-    }
-  }
-}
-```
-
-### 认证方式
-
-| 方式 | Header 格式 | 适用场景 |
-|------|------------|---------|
-| API Key | `Authorization: ApiKey <key>` | 外部平台对接 |
-| JWT | `Authorization: Bearer <token>` | 内部测试 |
-
-## 配置 Agent 权限
-
-编辑 `config/agents.yaml`：
-
-```yaml
-agents:
-  my_agent:
-    api_key: "my-secret-key"
-    allowed_tools:
-      - "erp.query_stock"
-      - "crm.get_customer"
-    rate_limit: 1000/hour
-```
+详见 [README.md — External Platform Integration](README.md#external-platform-integration)。
 
 ## 常见问题
 
