@@ -55,7 +55,8 @@ curl http://localhost:7680/health  # → {"status": "ok"}
 ### 快速体验（推荐）
 
 ```bash
-touch .env  # 创建空环境变量文件
+cd mcp-governor
+cp .env.example .env  # 不需要LLM_API_KEY
 docker compose -f docker-compose.min.yml up -d
 ./demo/docker-demo.sh
 ```
