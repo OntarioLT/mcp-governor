@@ -176,6 +176,9 @@ docker compose -f docker-compose.min.yml up -d
 | **鉴权** | ✅ JWT + API Key | ✅ + OAuth 2.1 Token Introspection + Admin SSO |
 | **OPA 策略** | ✅ 角色权限控制 | ✅ 同社区版 |
 | **REST → MCP** | ✅ 零配置动态代理 | ✅ 同社区版 |
+| **gRPC → MCP** | ✅ 自动适配 | ✅ 同社区版 |
+| **Langfuse 追踪** | ✅ LLM调用轨迹 | ✅ 同社区版 |
+| **外部平台集成** | ✅ 直连Gateway | ✅ 同社区版 |
 | **Admin UI** | ✅ 基础管理界面 | ✅ + Policies + Monitoring |
 | **Chain Detector** | ❌ | ✅ 链路风险检测 |
 | **License 校验** | ❌ | ✅ 企业版 License |
