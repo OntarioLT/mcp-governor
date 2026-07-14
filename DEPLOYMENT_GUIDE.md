@@ -6,35 +6,15 @@
 - Docker Compose v2+
 - 4GB+ 可用内存
 
-## 快速开始（推荐）
-
-### 1. 克隆仓库
-
-```bash
-git clone https://github.com/OntarioLT/mcp-governor.git
-cd mcp-governor
-```
-
-### 2. 启动服务
-
-```bash
-docker compose -f docker-compose.min.yml up -d
-```
-
-### 3. 验证部署
-
-```bash
-curl http://localhost:7680/health
-# 期望输出: {"status":"ok","version":"1.0.0"}
-```
-
-## 完整部署（含监控）
+## 完整部署
 
 如需 Prometheus + Grafana 监控、Langfuse LLM 追踪和 Admin UI 管理界面：
 
 ### 1. 配置环境变量
 
 ```bash
+git clone https://github.com/OntarioLT/mcp-governor.git
+cd mcp-governor
 cp .env.example .env
 ```
 
@@ -48,6 +28,8 @@ LLM_API_KEY=sk-your-key-here
 
 ```bash
 docker compose up -d
+# curl http://localhost:7680/health
+# 期望输出: {"status":"ok","version":"1.0.0"}
 ```
 
 ### 3. 访问 Admin UI
