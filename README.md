@@ -105,6 +105,34 @@ docker compose -f docker-compose.min.yml up -d
 
 **MCP Governor 的独特定位**：开箱即用的安全治理 + 本土化中文生态。对企事业单位而言，无需二次开发即可实现 AI 工具的合规管控。
 
+## Editions
+
+| 功能 | Community（社区版） | Enterprise（企业版） |
+|------|---------------------|----------------------|
+| **注入防护** | ✅ 848 条 Aho-Corasick 规则 | ✅ 同社区版 |
+| **PII 脱敏** | ✅ 身份证/手机号/邮箱/银行卡 | ✅ 同社区版 |
+| **审计追溯** | ✅ 结构化日志 + Agent 身份 | ✅ + Ed25519 签名链 |
+| **鉴权** | ✅ JWT + API Key | ✅ + OAuth 2.1 Token Introspection + Admin SSO |
+| **OPA 策略** | ✅ 角色权限控制 | ✅ 同社区版 |
+| **REST → MCP** | ✅ 零配置动态代理 | ✅ 同社区版 |
+| **gRPC → MCP** | ✅ 自动适配 | ✅ 同社区版 |
+| **Langfuse 追踪** | ✅ LLM调用轨迹 | ✅ 同社区版 |
+| **外部平台集成** | ✅ 直连Gateway | ✅ 同社区版 |
+| **Admin UI** | ✅ 基础管理界面 | ✅ + Policies + Monitoring |
+| **Chain Detector** | ❌ | ✅ 链路风险检测 |
+| **License 校验** | ❌ | ✅ 企业版 License |
+| **全场景 DEMO** | ❌ | ✅ Python 示例 |
+| **企业场景定制** | ❌ | ✅ 按需定制 + SLA |
+| **源码** | ❌ 闭源分发 | ❌ 闭源分发（可选购源码授权） |
+| **镜像来源** | Docker Hub | 私有 Registry |
+| **定价** | 免费 | 商业授权 |
+
+> 💡 企业版镜像需联系商务获取私有 Registry 访问权限（见 [About](#about)）。
+
+### 全场景 Demo（企业版）
+
+企业版镜像内置完整 Demo 包（含 LLM Agent 自动演示 14 场景），启动后下载即可体验。详见 [`demo/RUNBOOK_DEMO.md`](demo/RUNBOOK_DEMO.md)。
+
 ## External Platform Integration
 
 任何 MCP 兼容平台（DIFY、Claude Desktop、自研 Agent）可直连 Gateway：
@@ -165,34 +193,6 @@ docker compose -f docker-compose.min.yml up -d
 | POST | `/auth/login` | Admin UI login | No |
 | POST | `/auth/change-password` | Change password | Yes |
 | GET | `/auth/me` | Current user info | Yes |
-
-## Editions
-
-| 功能 | Community（社区版） | Enterprise（企业版） |
-|------|---------------------|----------------------|
-| **注入防护** | ✅ 848 条 Aho-Corasick 规则 | ✅ 同社区版 |
-| **PII 脱敏** | ✅ 身份证/手机号/邮箱/银行卡 | ✅ 同社区版 |
-| **审计追溯** | ✅ 结构化日志 + Agent 身份 | ✅ + Ed25519 签名链 |
-| **鉴权** | ✅ JWT + API Key | ✅ + OAuth 2.1 Token Introspection + Admin SSO |
-| **OPA 策略** | ✅ 角色权限控制 | ✅ 同社区版 |
-| **REST → MCP** | ✅ 零配置动态代理 | ✅ 同社区版 |
-| **gRPC → MCP** | ✅ 自动适配 | ✅ 同社区版 |
-| **Langfuse 追踪** | ✅ LLM调用轨迹 | ✅ 同社区版 |
-| **外部平台集成** | ✅ 直连Gateway | ✅ 同社区版 |
-| **Admin UI** | ✅ 基础管理界面 | ✅ + Policies + Monitoring |
-| **Chain Detector** | ❌ | ✅ 链路风险检测 |
-| **License 校验** | ❌ | ✅ 企业版 License |
-| **全场景 DEMO** | ❌ | ✅ Python 示例 |
-| **企业场景定制** | ❌ | ✅ 按需定制 + SLA |
-| **源码** | ❌ 闭源分发 | ❌ 闭源分发（可选购源码授权） |
-| **镜像来源** | Docker Hub | 私有 Registry |
-| **定价** | 免费 | 商业授权 |
-
-> 💡 企业版镜像需联系商务获取私有 Registry 访问权限（见 [About](#about)）。
-
-### 全场景 Demo（企业版）
-
-企业版镜像内置完整 Demo 包（含 LLM Agent 自动演示 14 场景），启动后下载即可体验。详见 [`demo/RUNBOOK_DEMO.md`](demo/RUNBOOK_DEMO.md)。
 
 ## About
 
