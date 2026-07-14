@@ -18,9 +18,15 @@
 # 下载 Demo 包
 curl -O http://localhost:7680/api/demo/package
 
-# 解压并运行
+# 解压
 unzip mcp-governor-demo.zip
 cd mcp-governor-demo
+
+# 配置环境变量（从模板复制）
+cp .env.example .env
+# 编辑 .env，填入 LLM_API_KEY 和 GATEWAY_URL
+
+# 安装依赖并运行
 uv sync
 uv run python demo/agent.py
 ```
