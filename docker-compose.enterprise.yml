@@ -5,16 +5,15 @@
 # 与社区版 docker-compose.yml 唯一区别：mcp-governor 使用 enterprise-latest 镜像
 #
 # 前置条件：
-#   1. 从商务获取 License 文件 (license.key)
-#   2. 将 License 文件放到当前目录
-#   3. 设置私有 Registry（可选，默认使用阿里云 ACR）
+#   1. 从商务获取 License Key（设置 MCP_GOVERNOR_LICENSE 环境变量）
+#   2. 登录阿里云 ACR（联系商务获取 RAM 账号密码）
 #
-# 设置私有 Registry：
-#   export ENTERPRISE_REGISTRY=registry.cn-hangzhou.aliyuncs.com/your-namespace
+# Registry 地址（默认使用阿里云 ACR）：
+#   docker login --username=mcp-governor@<your-account-id> crpi-zv48h6itqo28pfxd.cn-hangzhou.personal.cr.aliyuncs.com
 
 services:
   mcp-governor:
-    image: ${ENTERPRISE_REGISTRY:-registry.cn-hangzhou.aliyuncs.com/your-repo}/mcp-governor:enterprise-latest
+    image: ${ENTERPRISE_REGISTRY:-crpi-zv48h6itqo28pfxd.cn-hangzhou.personal.cr.aliyuncs.com}/ontariolt/mcp-governor:enterprise-latest
     container_name: mcp-governor
     ports:
       - "7680:7680"
