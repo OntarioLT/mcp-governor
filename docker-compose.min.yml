@@ -20,6 +20,7 @@ services:
       - governor-logs:/var/log/mcp-governor
       - ./config:/app/config:ro
       - ./policies:/app/policies:ro
+      - ./manifests:/app/manifests:ro
     depends_on:
       - opa
     restart: unless-stopped

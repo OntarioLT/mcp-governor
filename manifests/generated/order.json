@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "source": "manifests/grpc/order.proto",
+    "namespace": "order",
+    "baseUrl": "",
+    "authType": "none"
+  },
+  "tools": [
+    {
+      "name": "order.get_order",
+      "description": "gRPC OrderService.GetOrder",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "order_id"
+        ]
+      },
+      "binding": {
+        "service": "OrderService",
+        "method": "GetOrder",
+        "inputType": "GetOrderRequest",
+        "outputType": "Order",
+        "transport": "grpc",
+        "riskLevel": "LOW"
+      }
+    },
+    {
+      "name": "order.list_orders",
+      "description": "gRPC OrderService.ListOrders",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "type": "string"
+          },
+          "page_size": {
+            "type": "integer"
+          },
+          "page_token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "customer_id",
+          "page_size",
+          "page_token"
+        ]
+      },
+      "binding": {
+        "service": "OrderService",
+        "method": "ListOrders",
+        "inputType": "ListOrdersRequest",
+        "outputType": "ListOrdersResponse",
+        "transport": "grpc",
+        "riskLevel": "LOW"
+      }
+    },
+    {
+      "name": "order.create_order",
+      "description": "gRPC OrderService.CreateOrder",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "product_id": {
+                  "type": "string"
+                },
+                "product_name": {
+                  "type": "string"
+                },
+                "quantity": {
+                  "type": "integer"
+                },
+                "unit_price": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "product_id",
+                "product_name",
+                "quantity",
+                "unit_price"
+              ]
+            }
+          },
+          "shipping_address": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "customer_id",
+          "shipping_address"
+        ]
+      },
+      "binding": {
+        "service": "OrderService",
+        "method": "CreateOrder",
+        "inputType": "CreateOrderRequest",
+        "outputType": "Order",
+        "transport": "grpc",
+        "riskLevel": "HIGH"
+      }
+    },
+    {
+      "name": "order.update_order",
+      "description": "gRPC OrderService.UpdateOrder",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ORDER_STATUS_UNSPECIFIED",
+              "ORDER_STATUS_PENDING",
+              "ORDER_STATUS_CONFIRMED",
+              "ORDER_STATUS_SHIPPED",
+              "ORDER_STATUS_DELIVERED",
+              "ORDER_STATUS_CANCELLED"
+            ]
+          }
+        },
+        "required": [
+          "order_id"
+        ]
+      },
+      "binding": {
+        "service": "OrderService",
+        "method": "UpdateOrder",
+        "inputType": "UpdateOrderRequest",
+        "outputType": "Order",
+        "transport": "grpc",
+        "riskLevel": "HIGH"
+      }
+    },
+    {
+      "name": "order.delete_order",
+      "description": "gRPC OrderService.DeleteOrder",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "order_id"
+        ]
+      },
+      "binding": {
+        "service": "OrderService",
+        "method": "DeleteOrder",
+        "inputType": "DeleteOrderRequest",
+        "outputType": "Empty",
+        "transport": "grpc",
+        "riskLevel": "HIGH"
+      }
+    }
+  ]
+}
