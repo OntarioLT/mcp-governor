@@ -28,6 +28,18 @@ curl http://localhost:7680/health  # → {"status": "ok"}
 
 > 详细部署说明请参考 [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
 
+### LLM 配置
+
+支持所有 OpenAI 兼容格式的 LLM Provider，通过修改 `.env` 中的三个变量切换：
+
+| Provider | Base URL | Model 示例 | API Key |
+|----------|----------|-----------|---------|
+| **DeepSeek** | `https://api.deepseek.com/v1` | `deepseek-v4-flash` | DeepSeek API Key |
+| **通义千问 Qwen** | `https://dashscope.aliyuncs.com/compatible-mode/v1` | `qwen-plus` | 阿里云 API Key |
+| **Ollama（本地）** | `http://localhost:11434/v1` | `qwen3` | 无需 API Key |
+| **OpenAI** | `https://api.openai.com/v1` | `gpt-4o-mini` | OpenAI API Key |
+| **Google Gemini** | `https://generativelanguage.googleapis.com/v1beta/openai/` | `gemini-3.5-flash` | Google API Key |
+
 ## Core Capabilities
 
 ### 🛡️ 安全治理
@@ -135,6 +147,23 @@ docker compose -f docker-compose.min.yml up -d
 | **OAuth 2.1** | `Authorization: Bearer <token>` | Introspection 端点（RFC 7662） | 企业 IdP 集成（Enterprise 版增加 SSO） |
 
 > **OAuth 2.1 说明**：当前 OAuth 2.1 仅支持 Opaque Token（通过 IdP 的 Introspection 端点校验）。如果 IdP 签发的是 JWT Token，会被 JWTHook 以本地验签方式处理（需要配置公钥）。
+
+## API Reference
+
+| Method | Path | Description | Auth |
+|--------|------|-------------|------|
+| GET | `/health` | Health check | No |
+| GET | `/metrics` | Prometheus metrics | No |
+| POST | `/mcp` | MCP JSON-RPC (Streamable HTTP) | Yes |
+| GET | `/audit` | Audit logs (latest 10) | No |
+| GET | `/registry` | List registered servers | No |
+| POST | `/registry` | Register MCP server | No |
+| DELETE | `/registry/{id}` | Unregister MCP server | No |
+| POST | `/rest_backends` | Register REST backend | No |
+| DELETE | `/rest_backends/{name}` | Unregister REST backend | No |
+| POST | `/auth/login` | Admin UI login | No |
+| POST | `/auth/change-password` | Change password | Yes |
+| GET | `/auth/me` | Current user info | Yes |
 
 ## Editions
 

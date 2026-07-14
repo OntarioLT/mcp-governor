@@ -152,6 +152,44 @@ uv --version
 uv sync --refresh
 ```
 
+## REST → MCP 动态虚拟化（可选）
+
+将任意 REST API 动态代理为 MCP tools，无需手写 binding 或预生成 manifest。
+
+### 配置方式
+
+**方式一：Admin UI 运行时注册（推荐）**
+
+1. 打开 http://localhost:8080 → Tools → + Register
+2. 选择 **REST (运行时)** tab
+3. 填写 Base URL、Namespace，可选 OpenAPI URL
+4. 点击 Register，工具立即出现在列表中
+
+**方式二：配置文件（启动时加载）**
+
+在 Gateway 容器的 `config/rest_backends.yaml` 中添加：
+
+```yaml
+backends:
+  - base_url: http://your-api:8080
+    namespace: api           # tool name 前缀
+    auth:
+      type: bearer
+      token: ${API_TOKEN}
+    include: ["/v1/*"]       # 只暴露 /v1/ 下的接口
+```
+
+重启 Gateway 加载配置。
+
+### 验证
+
+```bash
+curl -s http://localhost:7680/mcp \
+  -H "Content-Type: application/json" \
+  -H "Authorization: ApiKey <your-api-key>" \
+  -d '{"jsonrpc":"2.0","method":"tools/list","id":1}' | python3 -m json.tool | grep "rest_proxy"
+```
+
 ## 更多信息
 
 - 完整部署指南：[`DEPLOYMENT_GUIDE.md`](../DEPLOYMENT_GUIDE.md)

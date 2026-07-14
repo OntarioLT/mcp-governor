@@ -54,6 +54,16 @@ docker compose up -d
 
 浏览器打开 http://localhost:8080 即可访问管理界面。
 
+**Admin UI 功能一览：**
+
+| 页面 | 功能 |
+|------|------|
+| **Tools** | 查看已注册工具、注册 MCP Server / REST API、一键安装预配置集成（GitHub/Slack/高德等 10+ 模板） |
+| **Agents** | 查看和编辑 Agent 配置（allowed_tools、rate_limit），修改后立即生效 |
+| **Policies** | 角色管理、工具权限配置、敏感工具白名单、策略测试 |
+| **Monitoring** | Grafana 实时监控面板（Prometheus 指标） |
+| **Audit Log** | 审计日志表格（trace_id / tool / action / agent / latency） |
+
 ### 服务端口
 
 | 服务 | 端口 | 说明 |
