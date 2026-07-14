@@ -177,7 +177,8 @@ docker compose -f docker-compose.min.yml up -d
 | **REST → MCP** | ✅ 零配置动态代理 | ✅ 同社区版 |
 | **Admin UI** | ✅ 基础管理界面 | ✅ + Policies + Monitoring |
 | **Chain Detector** | ❌ | ✅ 链路风险检测 |
-| **License 校验** | ✅ 社区版 License | ✅ 企业版 License |
+| **License 校验** | ❌ | ✅ 企业版 License |
+| **全场景 DEMO** | ❌ | ✅ Python 示例 |
 | **源码** | ❌ 闭源分发 | ❌ 闭源分发（可选购源码授权） |
 | **镜像来源** | Docker Hub (`ontariolt/`) | 私有 Registry（联系商务） |
 | **定价** | 免费 | 商业授权 |
