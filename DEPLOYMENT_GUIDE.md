@@ -121,20 +121,6 @@ curl -s http://localhost:7680/config/enterprise
 # 期望输出: {"enterprise": true, "features": {"oauth": true, ...}}
 ```
 
-### 企业版 vs 社区版
-
-| 功能 | 社区版 | 企业版 |
-|------|--------|--------|
-| 注入防护 | ✅ | ✅ |
-| PII 脱敏 | ✅ | ✅ |
-| 审计追溯 | ✅ | ✅ + Ed25519 签名 |
-| 鉴权 | JWT + API Key | + OAuth 2.1/OIDC SSO |
-| Admin UI | 基础功能 | 完整功能 |
-
-### 获取企业版 License
-
-📬 企业服务（含商业授权/定制/SLA）：<br>&emsp;Global: recursiontian@gmail.com (Response within 24-48h on weekdays)<br>&emsp;国内联系: 关注我的个人公众号「微碰旅行」→ 菜单栏「更多」→「企业服务」
-
 ## 对接 AI Agent
 
 ### Claude Desktop / DIFY / 自研 Agent
