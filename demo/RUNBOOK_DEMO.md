@@ -2,37 +2,28 @@
 
 > 面向企业客户的完整 Demo 演示指南，涵盖 11 个社区场景 + 3 个企业场景。
 
-## 快速开始
-
-```bash
-# 1. 克隆公开 REPO
-git clone https://github.com/OntarioLT/mcp-governor.git
-cd mcp-governor
-
-# 2. 配置环境变量
-cp .env.example .env
-# 编辑 .env，填入 LLM_API_KEY 和 MCP_GOVERNOR_LICENSE（联系商务获取）
-
-# 3. 启动企业版 Gateway
-docker compose -f docker-compose.enterprise.yml up -d
-
-# 4. 下载 Demo 包
-curl -O http://localhost:7680/api/demo/package
-
-# 5. 解压并运行
-unzip mcp-governor-demo.zip
-cd mcp-governor-demo
-uv sync
-uv run python demo/agent.py
-```
-
 ## 前置条件
 
 - Docker & Docker Compose
 - Python 3.11+
 - [uv](https://docs.astral.sh/uv/)（Python 包管理器）
 - LLM API Key（见下方支持列表）
-- 企业版 License（联系商务获取：recursiontian@gmail.com）
+- 企业版 License
+
+## 快速开始
+
+按 [DEPLOYMENT_GUIDE.md — 企业版部署](../DEPLOYMENT_GUIDE.md#企业版部署) 完成 Gateway 启动后：
+
+```bash
+# 下载 Demo 包
+curl -O http://localhost:7680/api/demo/package
+
+# 解压并运行
+unzip mcp-governor-demo.zip
+cd mcp-governor-demo
+uv sync
+uv run python demo/agent.py
+```
 
 ## 环境变量配置
 
