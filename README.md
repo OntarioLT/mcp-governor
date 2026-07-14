@@ -29,18 +29,6 @@ curl http://localhost:7680/health  # → {"status": "ok"}
 
 > 详细部署说明请参考 [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
 
-### LLM 配置
-
-支持所有 OpenAI 兼容格式的 LLM Provider，通过修改 `.env` 中的三个变量切换：
-
-| Provider | Base URL | Model 示例 | API Key |
-|----------|----------|-----------|---------|
-| **DeepSeek** | `https://api.deepseek.com/v1` | `deepseek-v4-flash` | DeepSeek API Key |
-| **通义千问 Qwen** | `https://dashscope.aliyuncs.com/compatible-mode/v1` | `qwen-plus` | 阿里云 API Key |
-| **Ollama（本地）** | `http://localhost:11434/v1` | `qwen3` | 无需 API Key |
-| **OpenAI** | `https://api.openai.com/v1` | `gpt-4o-mini` | OpenAI API Key |
-| **Google Gemini** | `https://generativelanguage.googleapis.com/v1beta/openai/` | `gemini-3.5-flash` | Google API Key |
-
 ## Core Capabilities
 
 ### 🛡️ 安全治理
