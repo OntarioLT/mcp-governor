@@ -61,7 +61,7 @@ docker compose up -d
 
 ## 企业版部署
 
-企业版提供完整的商业功能，包括 OAuth SSO、Ed25519 审计签名、Chain Detector 等。
+企业版提供完整的商业功能，参见 [README.md — Editions](README.md#editions)。
 
 ### 前置条件
 
