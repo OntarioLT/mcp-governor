@@ -12,51 +12,34 @@
 
 ## 快速开始
 
-按 [DEPLOYMENT_GUIDE.md — 企业版部署](../DEPLOYMENT_GUIDE.md#企业版部署) 完成 Gateway 启动后：
+按 [DEPLOYMENT_GUIDE.md — 企业版部署](../DEPLOYMENT_GUIDE.md#企业版部署) 完成 Gateway 启动后（确保根目录 `.env` 已配置 `LLM_API_KEY`）：
 
 ```bash
 # 下载 Demo 包
 curl -O http://localhost:7680/api/demo/package
 
-# 解压
+# 解压到 REPO 根目录下
 unzip mcp-governor-demo.zip
 cd mcp-governor-demo
 
-# 配置环境变量（从模板复制）
-cp .env.example .env
-# 编辑 .env，填入 LLM_API_KEY 和 GATEWAY_URL
-
-# 安装依赖并运行
+# 安装依赖并运行（agent.py 使用 REPO 根目录的 .env）
 uv sync
-uv run python demo/agent.py
+uv run python agent.py
 ```
 
 ## 环境变量配置
 
-编辑 `.env` 文件：
+Demo Agent 使用 REPO 根目录的 `.env`（已在 DEPLOYMENT_GUIDE.md 中配置），关键变量：
 
-```bash
-# 必填：LLM 配置（支持所有 OpenAI 兼容 API）
-LLM_API_KEY=your-api-key
-LLM_BASE_URL=https://api.deepseek.com/v1
-LLM_MODEL=deepseek-v4-flash
-
-# 必填：Gateway 地址
-GATEWAY_URL=http://localhost:7680
-
-# 可选：JWT 密钥（默认 dev-secret-change-me）
-JWT_SECRET_KEY=myJWT123
-
-# 可选：高德地图 API Key（Scenario 2 多源聚合需要）
-AMAP_API_KEY=your-amap-key
-
-# 可选：Langfuse 追踪
-LANGFUSE_PUBLIC_KEY=pk-lf-xxx
-LANGFUSE_SECRET_KEY=sk-lf-xxx
-LANGFUSE_HOST=http://localhost:3001
-```
-
-> **企业场景 License**：运行企业版场景（12-14）需要在 Gateway 的 `.env` 中配置 `MCP_GOVERNOR_LICENSE`，详见 [`DEPLOYMENT_GUIDE.md`](../DEPLOYMENT_GUIDE.md) 企业版部署章节。
+| 变量 | 说明 | 是否必填 |
+|------|------|---------|
+| `LLM_API_KEY` | LLM API 密钥 | 是 |
+| `LLM_BASE_URL` | LLM API 端点 | 是 |
+| `LLM_MODEL` | 模型名称 | 是 |
+| `GATEWAY_URL` | Gateway 地址（默认 `http://localhost:7680`） | 否 |
+| `JWT_SECRET_KEY` | JWT 密钥（默认 `dev-secret-change-me`） | 否 |
+| `AMAP_API_KEY` | 高德地图 API Key（Scenario 2 需要） | 否 |
+| `MCP_GOVERNOR_LICENSE` | 企业版 License（场景 12-14 需要） | 否 |
 
 ### LLM Provider 支持
 
