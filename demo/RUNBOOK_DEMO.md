@@ -5,17 +5,21 @@
 ## 快速开始
 
 ```bash
-# 1. 克隆公开 REPO（含 Demo 指南）
+# 1. 克隆公开 REPO
 git clone https://github.com/OntarioLT/mcp-governor.git
 cd mcp-governor
 
-# 2. 启动企业版 Gateway（需要 MCP_GOVERNOR_LICENSE）
+# 2. 配置环境变量
+cp .env.example .env
+# 编辑 .env，填入 LLM_API_KEY 和 MCP_GOVERNOR_LICENSE（联系商务获取）
+
+# 3. 启动企业版 Gateway
 docker compose -f docker-compose.enterprise.yml up -d
 
-# 3. 下载 Demo 包
+# 4. 下载 Demo 包
 curl -O http://localhost:7680/api/demo/package
 
-# 4. 解压并运行
+# 5. 解压并运行
 unzip mcp-governor-demo.zip
 cd mcp-governor-demo
 uv sync
@@ -54,6 +58,9 @@ LANGFUSE_PUBLIC_KEY=pk-lf-xxx
 LANGFUSE_SECRET_KEY=sk-lf-xxx
 LANGFUSE_HOST=http://localhost:3001
 ```
+
+> **企业场景 License**：运行企业版场景（12-14）需要在 Gateway 的 `.env` 中配置 `MCP_GOVERNOR_LICENSE`。
+> 该变量配置在 Docker Compose 部署侧（而非 Demo 包侧），详见 [`DEPLOYMENT_GUIDE.md`](../DEPLOYMENT_GUIDE.md) 企业版部署章节。
 
 ### LLM Provider 支持
 
