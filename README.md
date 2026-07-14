@@ -110,6 +110,21 @@ docker compose -f docker-compose.min.yml up -d
 }
 ```
 
+> **API Key 配置**：在 `config/agents.yaml` 中为外部平台创建 Agent，设置 `api_key` 和 `allowed_tools`：
+>
+> ```yaml
+> agents:
+>   dify_agent:                    # Agent 名称（自定义）
+>     api_key: "your-secret-key"   # 认证密钥（填入上方 JSON 的 <your-api-key>）
+>     allowed_tools:               # 允许调用的工具列表
+>       - "erp.query_stock"
+>       - "crm.get_customer"
+>       - "maps_*"
+>     rate_limit: 1000/hour
+> ```
+>
+> 修改后重启 Gateway 生效。
+
 ### 认证方式
 
 | 方式 | Header 格式 | 适用场景 |
@@ -138,6 +153,26 @@ docker compose -f docker-compose.min.yml up -d
 > 💡 企业版镜像需联系商务获取私有 Registry 访问权限。
 >
 > 📬 企业服务（含商业授权/定制/SLA）：<br>&emsp;Global: recursiontian@gmail.com (Response within 24-48h on weekdays)<br>&emsp;国内联系: 关注我的个人公众号「微碰旅行」→ 菜单栏「更多」→「企业服务」
+
+### 全场景 Demo（企业版）
+
+企业版镜像内置完整 Demo 包（含 LLM Agent 自动演示 14 场景），启动后下载即可体验：
+
+```bash
+# 1. 启动企业版（需要 MCP_GOVERNOR_LICENSE）
+docker compose -f docker-compose.enterprise.yml up -d
+
+# 2. 下载 Demo 包
+curl -O http://localhost:7680/api/demo/package
+
+# 3. 解压并运行
+unzip mcp-governor-demo.zip
+cd mcp-governor-demo
+uv sync --all-extras
+uv run python demo/agent.py
+```
+
+需要企业版 License。联系商务获取：recursiontian@gmail.com
 
 ## About
 
