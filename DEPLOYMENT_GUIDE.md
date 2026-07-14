@@ -46,6 +46,12 @@ docker compose up -d
 | **Monitoring** | Grafana 实时监控面板（Prometheus 指标） |
 | **Audit Log** | 审计日志表格（trace_id / tool / action / agent / latency） |
 
+### 4. 停止服务
+
+```bash
+docker compose down
+```
+
 ### 服务端口
 
 | 服务 | 端口 | 说明 |
