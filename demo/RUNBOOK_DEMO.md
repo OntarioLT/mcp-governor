@@ -155,6 +155,3 @@ uv sync --refresh
 ## 更多信息
 
 - 完整部署指南：[`DEPLOYMENT_GUIDE.md`](../DEPLOYMENT_GUIDE.md)
-- Docker 部署手册（私有）：`demo/RUNBOOK_DOCKER.md`
-- 本地开发调试（私有）：`demo/RUNBOOK_DEV.md`
-- API Reference：[`README.md`](../README.md#api-reference)
