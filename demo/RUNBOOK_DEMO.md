@@ -36,7 +36,7 @@ uv run python demo/agent.py
 
 ## 环境变量配置
 
-解压 Demo 包后，编辑 `.env` 文件：
+编辑 `.env` 文件：
 
 ```bash
 # 必填：LLM 配置（支持所有 OpenAI 兼容 API）
@@ -59,8 +59,7 @@ LANGFUSE_SECRET_KEY=sk-lf-xxx
 LANGFUSE_HOST=http://localhost:3001
 ```
 
-> **企业场景 License**：运行企业版场景（12-14）需要在 Gateway 的 `.env` 中配置 `MCP_GOVERNOR_LICENSE`。
-> 该变量配置在 Docker Compose 部署侧（而非 Demo 包侧），详见 [`DEPLOYMENT_GUIDE.md`](../DEPLOYMENT_GUIDE.md) 企业版部署章节。
+> **企业场景 License**：运行企业版场景（12-14）需要在 Gateway 的 `.env` 中配置 `MCP_GOVERNOR_LICENSE`，详见 [`DEPLOYMENT_GUIDE.md`](../DEPLOYMENT_GUIDE.md) 企业版部署章节。
 
 ### LLM Provider 支持
 
