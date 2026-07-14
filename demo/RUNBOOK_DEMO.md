@@ -16,7 +16,7 @@
 
 ```bash
 # 下载 Demo 包
-curl -O http://localhost:7680/api/demo/package
+curl -o mcp-governor-demo.zip http://localhost:7680/api/demo/package
 
 # 解压到 REPO 根目录下
 unzip mcp-governor-demo.zip
