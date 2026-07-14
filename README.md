@@ -110,20 +110,21 @@ docker compose -f docker-compose.min.yml up -d
 }
 ```
 
-> **API Key 配置**：在 `config/agents.yaml` 中为外部平台创建 Agent，设置 `api_key` 和 `allowed_tools`：
+> **对接方式**：MCP Governor 是安全网关，外部平台通过 API Key 认证连接。`config/agents.yaml` 是 **Gateway 侧的身份配置**，与外部平台的内部结构无关——你只需为每个外部平台创建一个 Gateway 身份：
 >
 > ```yaml
+> # config/agents.yaml — Gateway 侧配置，与 DIFY/Claude 等平台内部无关
 > agents:
->   dify_agent:                    # Agent 名称（自定义）
->     api_key: "your-secret-key"   # 认证密钥（填入上方 JSON 的 <your-api-key>）
->     allowed_tools:               # 允许调用的工具列表
+>   dify_platform:           # 你给这个连接起的名字（任意）
+>     api_key: "dify-2026"   # 告诉外部平台用这个 key 连接 Gateway
+>     allowed_tools:         # 该平台能访问哪些工具
 >       - "erp.query_stock"
 >       - "crm.get_customer"
 >       - "maps_*"
->     rate_limit: 1000/hour
+>     rate_limit: 10000/hour
 > ```
 >
-> 修改后重启 Gateway 生效。
+> 外部平台侧只需配置 MCP Server URL + API Key，无需了解 Gateway 内部配置。
 
 ### 认证方式
 
