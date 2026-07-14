@@ -17,6 +17,8 @@ MCP Governor 解决这三个问题。它是 AI Agent 与企业**内外部资源*
 
 **企业级 AI 安全治理，一键部署。**
 
+![Admin UI Monitoring](assets/admin-mornitoring.png)
+
 ## Quick Start
 
 ```bash
