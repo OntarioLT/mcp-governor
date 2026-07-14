@@ -185,7 +185,7 @@ docker compose -f docker-compose.min.yml up -d
 | **全场景 DEMO** | ❌ | ✅ Python 示例 |
 | **企业场景定制** | ❌ | ✅ 按需定制 + SLA |
 | **源码** | ❌ 闭源分发 | ❌ 闭源分发（可选购源码授权） |
-| **镜像来源** | Docker Hub (`ontariolt/`) | 私有 Registry（联系商务） |
+| **镜像来源** | Docker Hub | 私有 Registry（联系商务） |
 | **定价** | 免费 | 商业授权 |
 
 > 💡 企业版镜像需联系商务获取私有 Registry 访问权限（见 [About](#about)）。
