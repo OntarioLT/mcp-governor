@@ -109,6 +109,12 @@ curl -s http://localhost:7680/config/enterprise
 # 期望输出: {"enterprise": true, "features": {"oauth": true, ...}}
 ```
 
+#### 5. 停止服务
+
+```bash
+docker compose -f docker-compose.enterprise.yml down
+```
+
 ## 对接 AI Agent
 
 详见 [README.md — External Platform Integration](README.md#external-platform-integration)。
