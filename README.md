@@ -80,7 +80,7 @@ docker compose -f docker-compose.min.yml up -d
 | | 7 | Agent 隔离 | hr_agent 被拒（工具无授权），user 角色被拒（无写权限） |
 | | 8 | 用户级控制 | 敏感工具按 user_id 白名单控制 |
 | **可观测性** | 9 | 审计追溯 | 结构化日志含 Agent 身份 + 调用轨迹 |
-| | 10 | 可观测性 | Prometheus + Grafana 实时监控 |
+| | 10 | 可观测性 | 实时监控面板（Prometheus 指标） |
 | **流量控制** | 11 | 限流 | Token Bucket 限流（per-agent + per-tool） |
 
 ## Why Us?

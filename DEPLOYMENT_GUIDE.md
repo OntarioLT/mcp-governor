@@ -8,7 +8,7 @@
 
 ## 完整部署
 
-包含 Prometheus + Grafana 监控、Langfuse LLM 追踪和 Admin UI 管理界面：
+包含 Prometheus 监控、Langfuse LLM 追踪和 Admin UI 管理界面：
 
 ### 1. 配置环境变量
 
@@ -43,7 +43,7 @@ curl http://localhost:7680/health
 | **Tools** | 查看已注册工具、注册 MCP Server / REST API、一键安装预配置集成（GitHub/Slack/高德等 10+ 模板） |
 | **Agents** | 查看和编辑 Agent 配置（allowed_tools、rate_limit），修改后立即生效 |
 | **Policies** | 角色管理、工具权限配置、敏感工具白名单、策略测试 |
-| **Monitoring** | Grafana 实时监控面板（Prometheus 指标） |
+| **Monitoring** | 实时监控面板（Prometheus 指标） |
 | **Audit Log** | 审计日志表格（trace_id / tool / action / agent / latency） |
 
 ### 4. 停止服务
@@ -62,7 +62,7 @@ docker compose down
 | CRM API | 9002 | 客户服务（Demo） |
 | Prometheus | 9090 | 指标监控 |
 | Langfuse | 3001 | LLM 追踪 |
-| Admin UI | 8080 | 管理界面（含 Grafana 监控面板） |
+| Admin UI | 8080 | 管理界面（含监控面板） |
 
 ## 企业版部署
 
