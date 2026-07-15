@@ -34,7 +34,7 @@ curl http://localhost:7680/health
 
 ### 3. 访问 Admin UI
 
-浏览器打开 http://localhost:8080 即可访问管理界面。
+浏览器打开 http://localhost:8080 即可访问管理界面（默认账号密码：admin/admin）。
 
 **Admin UI 功能一览：**
 
