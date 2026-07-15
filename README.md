@@ -25,7 +25,7 @@ MCP Governor 解决这三个问题。它是 AI Agent 与企业**内外部资源*
 git clone https://github.com/OntarioLT/mcp-governor.git
 cd mcp-governor
 cp .env.example .env && vim .env   # 填入 LLM_API_KEY
-docker compose -f docker-compose.min.yml up -d
+docker compose up -d
 curl http://localhost:7680/health  # → {"status": "ok"}
 ```
 
