@@ -118,13 +118,6 @@ docker compose -f docker-compose.enterprise.yml down
 
 企业版 Admin UI 支持 OAuth 2.1 / OIDC SSO 登录，需要配置 IdP 信息。
 
-**方式一：通过 Admin UI 配置**
-
-1. 先用密码登录 Admin UI（`admin` / `admin`）
-2. 进入管理界面配置 OAuth Provider
-
-**方式二：手动编辑配置文件**
-
 编辑 `config/oauth.yaml`，添加 IdP 配置：
 
 ```yaml
