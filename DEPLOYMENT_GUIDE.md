@@ -28,6 +28,8 @@ LLM_API_KEY=sk-your-key-here
 
 ```bash
 docker compose up -d
+# curl http://localhost:7680/health
+# 期望输出: {"status":"ok","version":"1.0.0"}
 ```
 
 ### 3. 访问 Admin UI
