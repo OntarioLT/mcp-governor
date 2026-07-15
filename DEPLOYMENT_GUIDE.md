@@ -114,6 +114,48 @@ curl -s http://localhost:7680/config/enterprise
 docker compose -f docker-compose.enterprise.yml down
 ```
 
+#### 6. 配置 OAuth SSO（可选）
+
+企业版 Admin UI 支持 OAuth 2.1 / OIDC SSO 登录，需要配置 IdP 信息。
+
+**方式一：通过 Admin UI 配置**
+
+1. 先用密码登录 Admin UI（`admin` / `admin`）
+2. 进入管理界面配置 OAuth Provider
+
+**方式二：手动编辑配置文件**
+
+编辑 `config/oauth.yaml`，添加 IdP 配置：
+
+```yaml
+# 以 Keycloak 为例
+providers:
+  - name: keycloak
+    issuer: https://keycloak.example.com/realms/myrealm
+    introspection_url: https://keycloak.example.com/realms/myrealm/protocol/openid-connect/token/introspect
+    userinfo_url: https://keycloak.example.com/realms/myrealm/protocol/openid-connect/userinfo
+    client_id: mcp-governor
+    client_secret: <your-client-secret>
+    role_mapping:
+      realm-admin: admin
+      realm-user: user
+```
+
+配置完成后重启 Gateway：
+
+```bash
+docker compose -f docker-compose.enterprise.yml restart mcp-governor
+```
+
+验证 SSO 是否启用：
+
+```bash
+curl -s http://localhost:7680/auth/oauth-config
+# 期望输出: {"available": true}
+```
+
+启用后，Admin UI 登录页将显示"OAuth SSO"选项卡，支持通过企业 IdP 登录。
+
 ## 对接 AI Agent
 
 详见 [README.md — External Platform Integration](README.md#external-platform-integration)。

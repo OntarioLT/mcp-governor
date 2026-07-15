@@ -1,0 +1,29 @@
+# OAuth 2.1 / OIDC Configuration
+# Supports multiple IdP providers (Keycloak, Azure AD, Auth0, etc.)
+# See docs for full schema reference.
+
+# Global settings
+introspection_timeout_ms: 200
+userinfo_timeout_ms: 500
+userinfo_enabled: true
+cache_ttl_seconds: 5
+userinfo_cache_ttl_seconds: 300
+
+providers:
+  - name: keycloak
+    issuer: ${KEYCLOAK_ISSUER}
+    introspection_url: ${KEYCLOAK_INTROSPECTION_URL}
+    userinfo_url: ${KEYCLOAK_USERINFO_URL}
+    client_id: ${KEYCLOAK_CLIENT_ID}
+    client_secret: ${KEYCLOAK_CLIENT_SECRET}
+    role_mapping:
+      realm-admin: admin
+      realm-user: user
+
+  # Example: Azure AD
+  # - name: azure-ad
+  #   issuer: https://login.microsoftonline.com/${TENANT_ID}
+  #   introspection_url: https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/introspect
+  #   userinfo_url: https://graph.microsoft.com/v1.0/me
+  #   client_id: ${AZURE_CLIENT_ID}
+  #   client_secret: ${AZURE_CLIENT_SECRET}
