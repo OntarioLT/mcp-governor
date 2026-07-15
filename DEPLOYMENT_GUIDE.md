@@ -61,9 +61,8 @@ docker compose down
 | ERP API | 9003 | 库存服务（Demo） |
 | CRM API | 9002 | 客户服务（Demo） |
 | Prometheus | 9090 | 指标监控 |
-| Grafana | 3000 | 监控面板（admin/admin） |
 | Langfuse | 3001 | LLM 追踪 |
-| Admin UI | 8080 | 管理界面 |
+| Admin UI | 8080 | 管理界面（含 Grafana 监控面板） |
 
 ## 企业版部署
 
