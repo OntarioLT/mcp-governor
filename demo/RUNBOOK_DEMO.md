@@ -95,12 +95,11 @@ uv run python agent.py
 | 服务 | 端口 | 说明 |
 |------|------|------|
 | MCP Governor | :7680 | API Gateway |
-| Admin UI | :8080 | Web 管理后台 |
+| Admin UI | :8080 | Web 管理后台（含 Grafana 监控面板） |
 | ERP API | :9003 | 库存服务（Demo） |
 | CRM API | :9002 | 客户服务（Demo） |
 | OPA | :8181 | 策略引擎 |
 | Prometheus | :9090 | 指标监控 |
-| Grafana | :3000 | 监控面板 |
 
 ## 故障排查
 

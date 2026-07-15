@@ -41,7 +41,6 @@ curl http://localhost:7680/health
 | CRM API | 9002 |
 | Admin UI | 8080 |
 | Prometheus | 9090 |
-| Grafana | 3000 |
 | Langfuse | 3001 |
 
 ## Key Config Files
