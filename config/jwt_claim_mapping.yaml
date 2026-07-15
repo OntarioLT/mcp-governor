@@ -1,0 +1,18 @@
+# JWT Claim 映射配置
+# 将上游 IDP 返回的字段名映射到 Gateway 内部稳定字段名
+#
+# 用法：
+# - 换 IDP 时只需修改此文件，无需改代码
+# - 支持嵌套 claim 路径（如 realm_access.roles）
+#
+# 示例：
+#   Keycloak: dept_id: "department" 或 "dept"
+#   Azure AD: dept_id: "department_id" 或 "dept"
+#   Auth0:    dept_id: "department"
+
+# 内部字段 ← 上游 JWT 字段（支持嵌套路径）
+internal:
+  user_id:    "sub"                 # 用户唯一标识（OIDC 标准）
+  tenant_id:  "tenant_id"           # 企业/租户边界（或 "tid" / "realm"）
+  dept_id:    "department"          # 部门/数据隔离边界（或 "dept_id" / "dept"）
+  roles:      "realm_access.roles"  # 工具鉴权依据（Keycloak 格式）

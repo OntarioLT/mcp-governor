@@ -1,0 +1,35 @@
+# OAuth 2.1 / OIDC Configuration
+# Supports multiple IdP providers (Keycloak, Azure AD, Auth0, etc.)
+#
+# For standard OIDC providers (Keycloak, Auth0, etc.):
+#   Only `issuer` + `client_id` + `client_secret` are required.
+#   introspection_url, userinfo_url, authorization_url are auto-discovered
+#   via {issuer}/.well-known/openid-configuration.
+#
+# For non-standard providers (Azure AD, custom):
+#   Explicitly set introspection_url / userinfo_url.
+
+# Global settings
+introspection_timeout_ms: 200
+userinfo_timeout_ms: 500
+userinfo_enabled: true
+cache_ttl_seconds: 5
+userinfo_cache_ttl_seconds: 300
+
+providers:
+  # Keycloak — only issuer + credentials needed (endpoints auto-discovered)
+  - name: keycloak
+    issuer: http://host.docker.internal:8083/realms/mcp-governor
+    client_id: ${KEYCLOAK_CLIENT_ID}
+    client_secret: ${KEYCLOAK_CLIENT_SECRET}
+    role_mapping:
+      realm-admin: admin
+      realm-user: user
+
+  # Azure AD — requires explicit URLs (non-standard OIDC endpoints)
+  # - name: azure-ad
+  #   issuer: https://login.microsoftonline.com/${TENANT_ID}
+  #   introspection_url: https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/introspect
+  #   userinfo_url: https://graph.microsoft.com/v1.0/me
+  #   client_id: ${AZURE_CLIENT_ID}
+  #   client_secret: ${AZURE_CLIENT_SECRET}
