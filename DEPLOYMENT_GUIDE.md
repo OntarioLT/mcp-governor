@@ -8,7 +8,7 @@
 
 ## 完整部署
 
-如需 Prometheus + Grafana 监控、Langfuse LLM 追踪和 Admin UI 管理界面：
+包含 Prometheus + Grafana 监控、Langfuse LLM 追踪和 Admin UI 管理界面：
 
 ### 1. 配置环境变量
 
