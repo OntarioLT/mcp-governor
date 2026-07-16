@@ -120,15 +120,42 @@ docker compose -f docker-compose.enterprise.yml down
 
 <img src="assets/admin-sso.png" width="600">
 
+##### 6.1 配置 Keycloak
+
+**创建 Client**
+
+1. Keycloak Admin Console → Clients → Create client
+2. Client type: OpenID Connect
+3. Client ID: `mcp-governor`
+4. Valid redirect URIs: `http://localhost:7680/auth/oauth-callback`
+
+**创建 Realm Role**
+
+1. 左侧菜单 → Roles (Realm roles) → Create role
+2. 创建 `realm-admin`（管理员）和 `realm-user`（普通用户）
+
+**分配角色给用户**
+
+1. Users → 选择用户 → Role mappings → Assign role
+2. 管理员分配 `realm-admin`
+
+**配置 Role 进入 id_token**
+
+1. Client Scopes → `mcp-governor-dedicated` → Mappers → Create mapper
+2. Name: `realm-roles`
+3. Type: User Realm Role
+4. Token Claim Name: `realm_access.roles`
+5. Add to ID token: **ON**
+6. Add to access token: **ON**
+
+##### 6.2 修改 Gateway 配置
+
 编辑 `config/oauth.yaml`，添加 IdP 配置：
 
 ```yaml
-# 以 Keycloak 为例
 providers:
   - name: keycloak
-    issuer: https://keycloak.example.com/realms/myrealm
-    introspection_url: https://keycloak.example.com/realms/myrealm/protocol/openid-connect/token/introspect
-    userinfo_url: https://keycloak.example.com/realms/myrealm/protocol/openid-connect/userinfo
+    issuer: http://host.docker.internal:8083/realms/mcp-governor
     client_id: mcp-governor
     client_secret: <your-client-secret>
     role_mapping:
@@ -136,20 +163,35 @@ providers:
       realm-user: user
 ```
 
-配置完成后重启 Gateway：
+> **issuer 填写说明：** Keycloak 等标准 OIDC Provider 只需填写 `issuer` + `client_id` + `client_secret`，`introspection_url` 和 `userinfo_url` 通过 OIDC Discovery 自动发现。issuer 地址取决于部署方式：
+>
+> | 部署方式 | issuer |
+> |---------|--------|
+> | Docker Desktop (Win/Mac) | `http://host.docker.internal:8083/realms/mcp-governor` |
+> | Docker on Linux | `http://172.17.0.1:8083/realms/mcp-governor` |
+> | 裸机 / 非容器 | `http://localhost:8083/realms/mcp-governor` |
+> | 远程 Keycloak | `http://<keycloak-ip>:8083/realms/mcp-governor` |
 
-```bash
-docker compose -f docker-compose.enterprise.yml restart mcp-governor
+##### 6.3 配置环境变量
+
+在 `.env` 中添加：
+
+```
+KEYCLOAK_CLIENT_ID=mcp-governor
+KEYCLOAK_CLIENT_SECRET=<your-client-secret>
 ```
 
-验证 SSO 是否启用：
+##### 6.4 重启 Gateway 并验证
 
 ```bash
+docker compose -f docker-compose.enterprise.yml up -d mcp-governor
+
+# 检查 OAuth SSO 是否可用
 curl -s http://localhost:7680/auth/oauth-config
 # 期望输出: {"available": true}
 ```
 
-启用后，Admin UI 登录页将显示"OAuth SSO"选项卡，支持通过企业 IdP 登录。
+启用后，Admin UI 登录页将显示"OAuth SSO"选项卡。只有拥有 `realm-admin` 角色的用户才能通过 SSO 登录 Admin UI。
 
 ## 对接 AI Agent
 
