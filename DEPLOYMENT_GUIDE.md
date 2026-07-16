@@ -129,6 +129,8 @@ docker compose -f docker-compose.enterprise.yml down
 3. Client ID: `mcp-governor`
 4. Valid redirect URIs: `http://localhost:7680/auth/oauth-callback`
 
+> **注意：** `Valid redirect URIs` 必须与 Gateway 代码中的 `redirect_uri` 完全匹配。当前默认值为 `http://localhost:7680/auth/oauth-callback`。如果 Gateway 部署在非本机，需要在 `src/mcp_governor/app.py` 中修改 `redirect_uri` 后重新构建镜像，并同步更新 Keycloak 的 Valid redirect URIs。
+
 **创建 Realm Role**
 
 1. 左侧菜单 → Roles (Realm roles) → Create role
