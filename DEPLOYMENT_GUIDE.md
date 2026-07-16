@@ -120,7 +120,7 @@ docker compose -f docker-compose.enterprise.yml down
 
 <img src="assets/admin-sso.png" width="600">
 
-##### 6.1 配置 Keycloak
+##### 6.1 配置 Keycloak（参考示例）
 
 **创建 Client**
 
