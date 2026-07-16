@@ -5,6 +5,20 @@
 # 前置条件：docker compose 已启动（docker compose -f docker-compose.min.yml up -d）
 
 set -euo pipefail
+# 检查依赖
+if ! command -v python3 &> /dev/null; then
+    echo "错误: 需要安装 python3"
+    echo "  Ubuntu/Debian: sudo apt install python3"
+    echo "  macOS: brew install python3"
+    exit 1
+fi
+
+if ! python3 -c "import jwt" 2>/dev/null; then
+    echo "错误: 需要安装 PyJWT 包"
+    echo "  pip install PyJWT"
+    exit 1
+fi
+
 
 GATEWAY="http://localhost:7680"
 

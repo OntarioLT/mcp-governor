@@ -101,6 +101,7 @@ uv run python agent.py
 | CRM API | :9002 | 客户服务（Demo） |
 | OPA | :8181 | 策略引擎 |
 | Prometheus | :9090 | 指标监控 |
+| Langfuse | :3001 | LLM 追踪 |
 
 ## 故障排查
 
