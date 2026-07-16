@@ -65,8 +65,6 @@ docker compose -f docker-compose.min.yml up -d
 
 无需 Python 环境和 LLM API Key，只需 Docker 即可体验注入检测、PII 脱敏、OPA 策略等核心功能。
 
-完整部署详见 [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
-
 ### 全场景 Demo（企业版）
 
 企业版镜像内置完整 Demo 包（含 LLM Agent 自动演示 14 场景），启动后下载即可体验。详见 [`demo/RUNBOOK_DEMO.md`](demo/RUNBOOK_DEMO.md)。
