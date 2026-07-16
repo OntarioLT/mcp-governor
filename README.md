@@ -71,22 +71,6 @@ docker compose -f docker-compose.min.yml up -d
 
 企业版镜像内置完整 Demo 包（含 LLM Agent 自动演示 14 场景），启动后下载即可体验。详见 [`demo/RUNBOOK_DEMO.md`](demo/RUNBOOK_DEMO.md)。
 
-### 完整场景（需要 LLM）
-
-| 分类 | # | 场景 | 效果 |
-|------|---|------|------|
-| **工具路由** | 1 | 统一接入 | LLM 调用内部 ERP 查询库存，返回真实数据 |
-| | 2 | 多源聚合 | CRM + ERP + AMAP 距离计算，就近仓库发货 |
-| | 3 | REST 虚拟化 | 零配置 REST API → MCP tools |
-| **安全防护** | 4 | 注入防护 | 848 条规则拦截恶意 prompt 注入攻击 |
-| | 5 | PII 脱敏 | 客户手机号/邮箱自动屏蔽 |
-| **权限控制** | 6 | OPA 策略 | 非 admin 角色调用 `transfer_stock` 被拦截 |
-| | 7 | Agent 隔离 | hr_agent 被拒（工具无授权），user 角色被拒（无写权限） |
-| | 8 | 用户级控制 | 敏感工具按 user_id 白名单控制 |
-| **可观测性** | 9 | 审计追溯 | 结构化日志含 Agent 身份 + 调用轨迹 |
-| | 10 | 可观测性 | 实时监控面板（Prometheus 指标） |
-| **流量控制** | 11 | 限流 | Token Bucket 限流（per-agent + per-tool） |
-
 ## Why Us?
 
 | | MCP Governor | ContextForge (IBM) | AgentGateway |
