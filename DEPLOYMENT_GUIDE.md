@@ -193,6 +193,10 @@ curl -s http://localhost:7680/auth/oauth-config
 
 启用后，Admin UI 登录页将显示"OAuth SSO"选项卡。只有拥有 `realm-admin` 角色的用户才能通过 SSO 登录 Admin UI。
 
+### 全场景 Demo（企业版）
+
+企业版镜像内置完整 Demo 包（含 LLM Agent 自动演示 14 场景），启动后下载即可体验。详见 [`demo/RUNBOOK_DEMO.md`](demo/RUNBOOK_DEMO.md)。
+
 ## 对接 AI Agent
 
 详见 [README.md — External Platform Integration](README.md#external-platform-integration)。

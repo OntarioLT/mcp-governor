@@ -120,10 +120,6 @@ docker compose -f docker-compose.min.yml up -d
 
 > 💡 企业版镜像需联系商务获取私有 Registry 访问权限（见 [About](#about)）。
 
-### 全场景 Demo（企业版）
-
-企业版镜像内置完整 Demo 包（含 LLM Agent 自动演示 14 场景），启动后下载即可体验。详见 [`demo/RUNBOOK_DEMO.md`](demo/RUNBOOK_DEMO.md)。
-
 ## External Platform Integration
 
 任何 MCP 兼容平台（DIFY、Claude Desktop、自研 Agent）可直连 Gateway：
