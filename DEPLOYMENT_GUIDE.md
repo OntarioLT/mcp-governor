@@ -129,8 +129,6 @@ docker compose -f docker-compose.enterprise.yml down
 3. Client ID: `mcp-governor`
 4. Valid redirect URIs: `http://localhost:7680/auth/oauth-callback`
 
-> **注意：** `Valid redirect URIs` 填写的地址必须与 Admin UI 访问 Gateway 的地址一致。默认值为 `http://localhost:7680/auth/oauth-callback`。如果 Gateway 部署在其他服务器上，请将 `localhost` 替换为实际的 Gateway 地址和端口（如 `http://192.168.1.100:7680/auth/oauth-callback`），然后联系技术支持修改 Gateway 侧的回调地址配置。
-
 **创建 Realm Role**
 
 1. 左侧菜单 → Roles (Realm roles) → Create role
