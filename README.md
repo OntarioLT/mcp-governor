@@ -192,7 +192,7 @@ docker compose -f docker-compose.min.yml up -d
 MCP Governor 是 AI 工具的统一治理中枢，包含：
 
 - **免费功能**：鉴权 + 策略 + 注入防护 + PII 脱敏 + 审计追溯 + REST/gRPC/MCP 多协议接入 + Admin UI 基础管理
-- **商业增强功能**（需单独签署商业授权协议）：Admin UI 高级增强及 OIDC SSO · 企业版全场景DEMO示例 · Ed25519 审计签名 · 链路风险检测等
+- **商业增强功能**（需商业授权）：Admin UI 高级增强及 OIDC SSO · 企业版全场景DEMO示例 · Ed25519 审计签名 · 链路风险检测等
 - **源码授权**（需另行签署协议）：源码使用及二次开发，限客户内部部署
 - 企业定制部署 + SLA 支持
 
