@@ -86,10 +86,10 @@ docker compose -f docker-compose.min.yml up -d
 
 | 功能 | Community（社区版） | Enterprise（企业版） |
 |------|---------------------|----------------------|
+| **鉴权** | ✅ JWT + API Key + OAuth 2.1 | ✅ + Admin UI SSO |
 | **注入防护** | ✅ 848 条 Aho-Corasick 规则 | ✅ 同社区版 |
 | **PII 脱敏** | ✅ 身份证/手机号/邮箱/银行卡 | ✅ 同社区版 |
 | **审计追溯** | ✅ 结构化日志 + Agent 身份 | ✅ + Ed25519 签名链 |
-| **鉴权** | ✅ JWT + API Key + OAuth 2.1 | ✅ + Admin UI SSO |
 | **OPA 策略** | ✅ 角色权限控制 | ✅ 同社区版 |
 | **REST → MCP** | ✅ 零配置动态代理 | ✅ 同社区版 |
 | **gRPC → MCP** | ✅ 自动适配 | ✅ 同社区版 |
