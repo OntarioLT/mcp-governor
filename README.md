@@ -123,6 +123,11 @@ docker compose -f docker-compose.min.yml up -d
 | **定价** | 免费 | 商业授权 |
 
 > 💡 企业版镜像需联系商务获取私有 Registry 访问权限（见 [About](#about)）。
+>
+> **License 格式**：`MCPGOV-{features}-{expires}-{holder}-{checksum}`
+> - `features`：hex 功能位（a=oauth, b=ed25519, c=chain_detector，如 `abc` = 全部）
+> - `expires`：hex 时间戳，到期后企业功能自动禁用，Gateway 仍正常运行
+> - 查看到期：`python3 -c "import datetime; print(datetime.datetime.fromtimestamp(0x<expires>))"`
 
 ## External Platform Integration
 
