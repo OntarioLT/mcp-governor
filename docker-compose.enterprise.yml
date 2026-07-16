@@ -28,6 +28,7 @@ services:
       - ./config:/app/config:ro
       - ./policies:/app/policies:ro
       - ./manifests:/app/manifests:ro
+      - ./data:/data
     depends_on:
       - opa
     restart: unless-stopped
