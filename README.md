@@ -15,7 +15,7 @@
 
 MCP Governor 正是为解决这三大核心风险而生：作为AI Agent与企业内外部资源之间的安全网关，**原生适配MCP协议，无需改造现有Agent与业务系统**，统一纳管REST/gRPC/MCP等多协议接入，提供注入防护、PII自动脱敏、全链路审计追溯能力，帮企业在释放AI生产力的同时，守住数据安全与合规底线。
 
-**企无缝连接内外部生态，赋予 AI Agent 真正的执行力；依托企业级安全治理，实现一键可信部署。**
+**企业无缝连接内外部生态，赋予 AI Agent 真正的执行力；依托企业级安全治理，实现一键可信部署。**
 
 ![Admin UI Monitoring](assets/admin-mornitoring.png)
 
@@ -26,7 +26,7 @@ git clone https://github.com/OntarioLT/mcp-governor.git
 cd mcp-governor
 cp .env.example .env && vim .env   # 填入 LLM_API_KEY
 docker compose up -d
-curl http://localhost:7680/health  # → {"status": "ok"}
+curl http://localhost:7680/health  # 期望输出: {"status":"ok","version":"1.0.0"}
 ```
 
 > 详细部署说明请参考 [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
@@ -63,7 +63,7 @@ docker compose -f docker-compose.min.yml up -d
 ./demo/docker-demo.sh
 ```
 
-无需 Python 环境和 LLM API Key，只需 Docker 即可体验注入检测、PII 脱敏、OPA 策略等核心功能。
+只需 Docker 即可体验注入检测、PII 脱敏、OPA 策略等核心功能；完整 Demo 需要 Python 3.11+ 和 PyJWT。
 
 ### 全场景 Demo（企业版）
 

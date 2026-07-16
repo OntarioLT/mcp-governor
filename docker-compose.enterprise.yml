@@ -22,7 +22,6 @@ services:
     environment:
       - AUDIT_LOG_DIR=/var/log/mcp-governor
       - OPA_ADDR=http://opa:8181
-      - RATE_LIMIT_CAPACITY=5
       - MCP_LICENSE_STRICT=true
     volumes:
       - governor-logs:/var/log/mcp-governor

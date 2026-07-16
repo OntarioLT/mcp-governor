@@ -7,7 +7,7 @@ Deployment configuration only. **No source code, no Dockerfiles, no CI/CD.** Pre
 ## Quick Reference
 
 ```bash
-# Minimal deployment (4 containers, no LLM needed)
+# Minimal deployment (5 containers, no LLM needed)
 docker compose -f docker-compose.min.yml up -d
 
 # Full stack (9 containers, needs LLM_API_KEY in .env)
@@ -27,7 +27,7 @@ curl http://localhost:7680/health
 
 | File | Services | Use Case |
 |------|----------|----------|
-| `docker-compose.min.yml` | gateway, OPA, ERP, CRM | Quick start, no LLM |
+| `docker-compose.min.yml` | gateway, OPA, ERP, CRM, Admin UI | Quick start, no LLM |
 | `docker-compose.yml` | all 9 services | Full community stack |
 | `docker-compose.enterprise.yml` | all 9 services | Enterprise — only diff is `mcp-governor:enterprise-latest` |
 
@@ -56,8 +56,8 @@ curl http://localhost:7680/health
 
 - **Gateway port is 7680**, not 8080. Admin UI is on 8080.
 - `.env` was removed from git tracking (commit `ea95eab`). Always copy `.env.example`.
-- `docker-compose.min.yml` does NOT include Admin UI — use full compose for that.
-- Enterprise compose is identical to community full stack except the gateway image tag.
+- `docker-compose.min.yml` includes Admin UI (gateway, OPA, ERP, CRM, admin) — use full compose for that.
+- Enterprise compose: gateway uses enterprise-latest tag from private registry, adds MCP_LICENSE_STRICT env var.
 - Demo script (`demo/docker-demo.sh`) requires `python3` and `PyJWT` package.
 - OPA policies use Rego syntax. Edit `policies/*.rego` for auth/governance changes.
 - `config/agents.yaml` uses `allowed_tools` with glob patterns (e.g., `maps_*`).
