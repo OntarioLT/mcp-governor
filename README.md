@@ -154,13 +154,37 @@ docker compose -f docker-compose.min.yml up -d
 
 ## LICENSES
 
-This repository (deployment configs and documentation) is licensed under **Apache 2.0** — see the [LICENSE](LICENSE) file for details.
+This repository (deployment configurations and documentation) is licensed under **Apache 2.0** — see the [LICENSE](LICENSE) file for details.
 
-MCP Governor uses an Open Core licensing model:
-- **Community Edition runtime image** (`ontariolt/mcp-governor`, distributed via Docker Hub): Built from a private repository but granted Apache 2.0 distribution rights by the copyright holder. Redistribution and modification are permitted under Apache 2.0 terms.
-- **Enterprise Edition components** (including advanced features, private registry images, and optional source code access): Governed by a separate commercial license agreement. For access, contact recursiontian@gmail.com.
+MCP Governor uses an **Open Core** licensing model. All runtime source code resides in a private repository and is expressly excluded from the Apache 2.0 license covering this public repository.
 
-All runtime source code resides in a private repository and is not covered by the Apache 2.0 license applicable to this public repository.
+---
+
+### 🆓 Community Edition
+Free to use for internal and production use under the [MCP Governor Community License (EULA)](EULA).
+
+| Component | Docker Image |
+| :--- | :--- |
+| Runtime | `ontariolt/mcp-governor` (tags: `community-*`) |
+| Admin Interface | `ontariolt/mcp-governor-admin` (shared frontend) |
+
+> **Note:** The runtime source code is not publicly distributed. The Admin UI is a shared component; advanced features require the Enterprise runtime.
+
+---
+
+### 🏢 Enterprise Edition
+Governed by a separate commercial license agreement. Unlocks advanced features (e.g., Admin SSO, Ed25519 signing, Chain Detector) within the shared Admin Interface when connected to the Enterprise runtime.
+
+| Component | Docker Image |
+| :--- | :--- |
+| Runtime | `ontariolt/mcp-governor` (tags: `enterprise-*`) |
+
+Includes access to proprietary source code for internal deployment, customization, and integration, subject to a separate **Source Code License Agreement**.
+
+---
+
+**For Enterprise access, commercial licensing, or source code agreements:**
+📧 [recursiontian@gmail.com](mailto:recursiontian@gmail.com)
 
 ## About
 
