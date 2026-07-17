@@ -150,23 +150,6 @@ docker compose -f docker-compose.min.yml up -d
 
 > **OAuth 2.1 说明**：当前 OAuth 2.1 仅支持 Opaque Token（通过 IdP 的 Introspection 端点校验）。如果 IdP 签发的是 JWT Token，会被 JWTHook 以本地验签方式处理（需要配置公钥）。
 
-## API Reference
-
-| Method | Path | Description | Auth |
-|--------|------|-------------|------|
-| GET | `/health` | Health check | No |
-| GET | `/metrics` | Prometheus metrics | No |
-| POST | `/mcp` | MCP JSON-RPC (Streamable HTTP) | Yes |
-| GET | `/audit` | Audit logs (latest 10) | No |
-| GET | `/registry` | List registered servers | No |
-| POST | `/registry` | Register MCP server | No |
-| DELETE | `/registry/{id}` | Unregister MCP server | No |
-| POST | `/rest_backends` | Register REST backend | No |
-| DELETE | `/rest_backends/{name}` | Unregister REST backend | No |
-| POST | `/auth/login` | Admin UI login | No |
-| POST | `/auth/change-password` | Change password | Yes |
-| GET | `/auth/me` | Current user info | Yes |
-
 ## About
 
 > **Lei Tian — AI Architect by profession, Traveler & Poet by passion.**
