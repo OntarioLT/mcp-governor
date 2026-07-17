@@ -177,8 +177,7 @@ Governed by a separate commercial license agreement. Unlocks advanced features (
 
 Includes access to proprietary source code for internal deployment, customization, and integration, subject to a separate **Source Code License Agreement**.
 
-**For Enterprise access, commercial licensing, or source code agreements:**
-📧 企业服务（见 [About](#about)）
+**For Enterprise access, commercial licensing, or source code agreements:**[See About](#about)
 
 ## About
 
