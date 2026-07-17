@@ -150,6 +150,16 @@ docker compose -f docker-compose.min.yml up -d
 
 > **OAuth 2.1 说明**：当前 OAuth 2.1 仅支持 Opaque Token（通过 IdP 的 Introspection 端点校验）。如果 IdP 签发的是 JWT Token，会被 JWTHook 以本地验签方式处理（需要配置公钥）。
 
+## LICENSES
+
+This repository (deployment configs and documentation) is licensed under **Apache 2.0** — see the [LICENSE](LICENSE) file for details.
+
+MCP Governor uses an Open Core licensing model:
+- **Community Edition runtime image** (`ontariolt/mcp-governor`, distributed via Docker Hub): Built from a private repository but granted Apache 2.0 distribution rights by the copyright holder. Redistribution and modification are permitted under Apache 2.0 terms.
+- **Enterprise Edition components** (including advanced features, private registry images, and optional source code access): Governed by a separate commercial license agreement. For access, contact recursiontian@gmail.com.
+
+All runtime source code resides in a private repository and is not covered by the Apache 2.0 license applicable to this public repository.
+
 ## About
 
 > **Lei Tian — AI Architect by profession, Traveler & Poet by passion.**
@@ -165,6 +175,5 @@ MCP Governor 是 AI 工具的统一治理中枢，包含：
 
 ![微信公众号二维码](assets/wemeet_travel.jpg)
 
-见 [LICENSE](LICENSE) 了解授权条款。
 
 Copyright 2026 Lei Tian
