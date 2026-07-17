@@ -158,8 +158,6 @@ This repository (deployment configurations and documentation) is licensed under 
 
 MCP Governor uses an **Open Core** licensing model. All runtime source code resides in a private repository and is expressly excluded from the Apache 2.0 license covering this public repository.
 
----
-
 ### 🆓 Community Edition
 Free to use for internal and production use under the [MCP Governor Community License (EULA)](EULA).
 
