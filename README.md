@@ -106,7 +106,18 @@ docker compose -f docker-compose.min.yml up -d
 
 > 💡 企业版镜像需联系商务获取私有 Registry 访问权限（见 [About](#about)）。
 
-## External Platform Integration
+### Authentication Method
+
+| 方式 | Header 格式 | 校验方式 | 适用场景 |
+|------|------------|---------|---------|
+| **API Key** | `Authorization: ApiKey <key>` | 本地查找 agents.yaml | 外部平台对接（固定 key，不过期） |
+| **JWT** | `Authorization: Bearer <token>` | 本地验签（PyJWT + 公钥/密钥） | 内部系统、有签名密钥的场景 |
+| **OAuth 2.1** | `Authorization: Bearer <token>` | Introspection 端点（RFC 7662） | 企业 IdP 集成 |
+
+> **OAuth 2.1 说明**：当前 OAuth 2.1 仅支持 Opaque Token（通过 IdP 的 Introspection 端点校验）。如果 IdP 签发的是 JWT Token，会被 JWTHook 以本地验签方式处理（需要配置公钥）。
+
+
+## Client Integration
 
 任何 MCP 兼容平台（DIFY、Claude Desktop、自研 Agent）可直连 Gateway：
 
@@ -140,15 +151,6 @@ docker compose -f docker-compose.min.yml up -d
 >
 > 外部平台侧只需配置 MCP Server URL + API Key，无需了解 Gateway 内部配置。
 
-### Authentication Method
-
-| 方式 | Header 格式 | 校验方式 | 适用场景 |
-|------|------------|---------|---------|
-| **API Key** | `Authorization: ApiKey <key>` | 本地查找 agents.yaml | 外部平台对接（固定 key，不过期） |
-| **JWT** | `Authorization: Bearer <token>` | 本地验签（PyJWT + 公钥/密钥） | 内部系统、有签名密钥的场景 |
-| **OAuth 2.1** | `Authorization: Bearer <token>` | Introspection 端点（RFC 7662） | 企业 IdP 集成 |
-
-> **OAuth 2.1 说明**：当前 OAuth 2.1 仅支持 Opaque Token（通过 IdP 的 Introspection 端点校验）。如果 IdP 签发的是 JWT Token，会被 JWTHook 以本地验签方式处理（需要配置公钥）。
 
 ## LICENSES
 
