@@ -119,7 +119,7 @@ docker compose -f docker-compose.min.yml up -d
 
 ## Client Integration
 
-任何 MCP 兼容平台（DIFY、Claude Desktop、自研 Agent）可直连 Gateway：
+任何 MCP 兼容平台（Claude Desktop、Dify、自研 Agent）可直连 Gateway：
 
 ```json
 {
