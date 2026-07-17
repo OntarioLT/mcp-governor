@@ -170,18 +170,14 @@ Free to use for internal and production use under the [MCP Governor Community Li
 
 > **Note:** The runtime source code is not publicly distributed. The Admin UI is a shared component; advanced features require the Enterprise runtime.
 
----
-
 ### 🏢 Enterprise Edition
-Governed by a separate commercial license agreement. Unlocks advanced features (e.g., Admin SSO, Ed25519 signing, Chain Detector) within the shared Admin Interface when connected to the Enterprise runtime.
+Governed by a separate commercial license agreement. Unlocks advanced features (e.g., Admin SSO, Ed25519 signing, Chain Detector) when connected to the Enterprise runtime.
 
 | Component | Docker Image |
 | :--- | :--- |
 | Runtime | `ontariolt/mcp-governor` (tags: `enterprise-*`) |
 
 Includes access to proprietary source code for internal deployment, customization, and integration, subject to a separate **Source Code License Agreement**.
-
----
 
 **For Enterprise access, commercial licensing, or source code agreements:**
 📧 [recursiontian@gmail.com](mailto:recursiontian@gmail.com)
