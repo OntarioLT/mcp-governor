@@ -199,7 +199,7 @@ curl -s http://localhost:7680/auth/oauth-config
 
 ## 对接 AI Agent
 
-详见 [README.md — External Platform Integration](README.md#external-platform-integration)。
+详见 [README.md — Client Integration](README.md#client-integration)。
 
 ## 常见问题
 
