@@ -28,7 +28,7 @@ services:
       - MCP_LICENSE_STRICT=true
     volumes:
       - governor-logs:/var/log/mcp-governor
-      - ./config:/app/config:ro
+      - ./config:/app/config
       - ./policies:/app/policies:ro
       - ./manifests:/app/manifests:ro
       - ./data:/data

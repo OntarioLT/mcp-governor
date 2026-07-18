@@ -1,5 +1,1 @@
-{
-  "mcpServers": {
-
-  }
-}
+{"mcpServers": {"test-server": {"url": "http://mcp-erp-api:9003", "transport": "http"}, "test-crm": {"url": "http://mcp-crm-api:9002", "transport": "http"}}}
