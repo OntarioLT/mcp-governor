@@ -1,0 +1,77 @@
+# MCP Governor Configuration
+# 详见 docs/MCP_Governance_PRD.md §6
+
+gateway:
+  name: "mcp-governor"
+  listen: ":7680"
+
+internal:
+  manifests_dir: "manifests/generated"
+
+external_mcp_servers:
+  # MCP Server 元数据（name/namespace/category）
+  # 实际配置（url/transport）在 config/mcp.json 中管理
+  - name: "amap"
+    namespace: "amap"
+    category:
+      - "mobility.geo"
+      - "mobility.routing"
+      - "mobility.tracking"
+      - "mobility.local"
+
+categories:
+  mobility:
+    description: "出行与位置服务"
+    children:
+      geo: "地图与地理编码"
+      routing: "路线与导航"
+      tracking: "轨迹与地理围栏"
+      local: "本地生活与 POI"
+  comms:
+    description: "通讯与协作"
+    children:
+      im: "即时消息"
+      email: "邮件"
+      calendar: "日历"
+      push: "推送通知"
+  content:
+    description: "内容与媒体"
+    children:
+      docs: "文档与笔记"
+      files: "文件存储"
+      media: "图像与视频"
+      cms: "内容管理"
+  commerce:
+    description: "商务与客户"
+    children:
+      crm: "客户关系管理"
+      orders: "订单与交易"
+      support: "客服与工单"
+      marketing: "营销"
+  data:
+    description: "数据与智能"
+    children:
+      search: "搜索与知识检索"
+      db_ro: "数据库只读查询"
+      bi: "报表"
+      rag: "向量与 RAG 管道"
+  devops:
+    description: "开发与基础设施"
+    children:
+      vcs: "代码仓库"
+      ci: "CI/CD"
+      monitoring: "监控"
+      cloud: "云资源"
+  finance:
+    description: "金融与行政"
+    children:
+      payment: "支付"
+      invoice: "发票与报销"
+      legal: "法务"
+  utilities:
+    description: "通用工具"
+    children:
+      time: "时间与节假日"
+      convert: "格式转换"
+      weather: "天气"
+      crypto: "加密与验证"
