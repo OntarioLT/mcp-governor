@@ -63,7 +63,7 @@ docker compose -f docker-compose.min.yml up -d
 ./demo/docker-demo.sh
 ```
 
-只需 Docker 即可体验注入检测、PII 脱敏、OPA 策略等核心功能；完整 Demo 需要 Python 3.11+ 和 PyJWT。
+只需 Docker 即可体验注入检测、PII 脱敏、OPA 策略等核心功能；完整 Demo 需要 Python 3.11+，如下。
 
 ### 全场景 Demo（企业版）
 
