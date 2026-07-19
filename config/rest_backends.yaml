@@ -1,158 +1,132 @@
-# REST Backend Configuration for Dynamic Virtualization
-# Note: 'name' is optional — defaults to 'namespace' if not specified.
-
 backends:
-  # ─── Internal ERP API ──────────────────────────────────────────
-  - base_url: http://mcp-erp-api:9003
-    namespace: erp
-    scope: internal
-    auth:
-      type: none
-    timeout_ms: 5000
-    endpoints:
-      - name: health
-        description: Health
-        method: GET
-        path: /health
-        input_schema:
-          type: object
-          properties: {}
-      - name: query_stock_by_name
-        description: Search stock by product name across all warehouses
-        method: GET
-        path: /stock/search
-        input_schema:
-          type: object
-          properties:
-            name: { type: string, default: "", title: "Name" }
-      - name: query_stock
-        description: Query stock by SKU code (e.g. SKU001, SKU002)
-        method: GET
-        path: /stock/{sku}
-        input_schema:
-          type: object
-          properties:
-            sku: { type: string, title: "Sku" }
-          required: [sku]
-      - name: create_stock_entry
-        description: Create Stock Entry
-        method: POST
-        path: /stock-entry
-        input_schema:
-          type: object
-          properties:
-            sku: { type: string, title: "Sku" }
-            warehouse: { type: string, title: "Warehouse" }
-            quantity: { type: integer, title: "Quantity" }
-          required: [sku, warehouse, quantity]
-      - name: transfer_stock
-        description: Transfer Stock
-        method: POST
-        path: /transfer
-        input_schema:
-          type: object
-          properties:
-            sku: { type: string, title: "Sku" }
-            from_warehouse: { type: string, title: "From Warehouse" }
-            to_warehouse: { type: string, title: "To Warehouse" }
-            quantity: { type: integer, title: "Quantity" }
-          required: [sku, from_warehouse, to_warehouse, quantity]
-
-  # ─── Internal CRM API ──────────────────────────────────────────
-  - base_url: http://mcp-crm-api:9002
-    namespace: crm
-    scope: internal
-    auth:
-      type: none
-    timeout_ms: 5000
-    endpoints:
-      - name: health
-        description: Health
-        method: GET
-        path: /health
-        input_schema:
-          type: object
-          properties: {}
-      - name: get_customer
-        description: Get Customer
-        method: GET
-        path: /customers/{customer_id}
-        input_schema:
-          type: object
-          properties:
-            customer_id: { type: string, title: "Customer Id" }
-          required: [customer_id]
-      - name: get_customer_orders
-        description: Get Customer Orders
-        method: GET
-        path: /customers/{customer_id}/orders
-        input_schema:
-          type: object
-          properties:
-            customer_id: { type: string, title: "Customer Id" }
-          required: [customer_id]
-      - name: create_order
-        description: Create a sales order with delivery address and warehouse
-        method: POST
-        path: /orders
-        input_schema:
-          type: object
-          properties:
-            customer_id: { type: string, title: "Customer Id" }
-            product: { type: string, title: "Product" }
-            price: { type: number, title: "Price" }
-            amount: { type: integer, title: "Amount", default: 1 }
-            delivery_address: { type: string, title: "Delivery Address", default: "" }
-            warehouse: { type: string, title: "Warehouse", default: "" }
-          required: [customer_id, product, price]
-
-  # ─── External: JSONPlaceholder ──────────────────────────────────
-  - base_url: https://jsonplaceholder.typicode.com
-    namespace: jp
-    auth:
-      type: none
-    timeout_ms: 5000
-    endpoints:
-      - name: list_posts
-        description: List all posts
-        method: GET
-        path: /posts
-        input_schema:
-          type: object
-          properties: {}
-      - name: get_posts_by_id
-        description: Get a post by ID
-        method: GET
-        path: /posts/{id}
-        input_schema:
-          type: object
-          properties:
-            id: { type: integer, description: "Post ID" }
-          required: [id]
-      - name: create_post
-        description: Create a new post
-        method: POST
-        path: /posts
-        input_schema:
-          type: object
-          properties:
-            title: { type: string }
-            body: { type: string }
-            userId: { type: integer }
-          required: [title, body, userId]
-      - name: list_users
-        description: List all users
-        method: GET
-        path: /users
-        input_schema:
-          type: object
-          properties: {}
-      - name: get_users_by_id
-        description: Get a user by ID
-        method: GET
-        path: /users/{id}
-        input_schema:
-          type: object
-          properties:
-            id: { type: integer, description: "User ID" }
-          required: [id]
+- base_url: http://mcp-crm-api:9002
+  namespace: crm
+  scope: internal
+  auth:
+    type: none
+  timeout_ms: 5000
+  endpoints:
+  - name: health
+    description: Health
+    method: GET
+    path: /health
+    input_schema:
+      type: object
+      properties: {}
+  - name: get_customer
+    description: Get Customer
+    method: GET
+    path: /customers/{customer_id}
+    input_schema:
+      type: object
+      properties:
+        customer_id:
+          type: string
+          title: Customer Id
+      required:
+      - customer_id
+  - name: get_customer_orders
+    description: Get Customer Orders
+    method: GET
+    path: /customers/{customer_id}/orders
+    input_schema:
+      type: object
+      properties:
+        customer_id:
+          type: string
+          title: Customer Id
+      required:
+      - customer_id
+  - name: create_order
+    description: Create a sales order with delivery address and warehouse
+    method: POST
+    path: /orders
+    input_schema:
+      type: object
+      properties:
+        customer_id:
+          type: string
+          title: Customer Id
+        product:
+          type: string
+          title: Product
+        price:
+          type: number
+          title: Price
+        amount:
+          type: integer
+          title: Amount
+          default: 1
+        delivery_address:
+          type: string
+          title: Delivery Address
+          default: ''
+        warehouse:
+          type: string
+          title: Warehouse
+          default: ''
+      required:
+      - customer_id
+      - product
+      - price
+- base_url: https://jsonplaceholder.typicode.com
+  namespace: jp
+  auth:
+    type: none
+  timeout_ms: 5000
+  endpoints:
+  - name: list_posts
+    description: List all posts
+    method: GET
+    path: /posts
+    input_schema:
+      type: object
+      properties: {}
+  - name: get_posts_by_id
+    description: Get a post by ID
+    method: GET
+    path: /posts/{id}
+    input_schema:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Post ID
+      required:
+      - id
+  - name: create_post
+    description: Create a new post
+    method: POST
+    path: /posts
+    input_schema:
+      type: object
+      properties:
+        title:
+          type: string
+        body:
+          type: string
+        userId:
+          type: integer
+      required:
+      - title
+      - body
+      - userId
+  - name: list_users
+    description: List all users
+    method: GET
+    path: /users
+    input_schema:
+      type: object
+      properties: {}
+  - name: get_users_by_id
+    description: Get a user by ID
+    method: GET
+    path: /users/{id}
+    input_schema:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: User ID
+      required:
+      - id

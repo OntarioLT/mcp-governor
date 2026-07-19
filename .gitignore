@@ -52,3 +52,6 @@ logs/
 package
 *.zip
 mcp-governor-demo/
+
+# Internal configs (contain API keys / sensitive URLs)
+config/agents.yaml

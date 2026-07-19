@@ -9,23 +9,7 @@
 
 agents:
   demo_agent:
-    api_key: "mcp-gw-demo-2026"
-    allowed_tools:
-      - "erp.query_stock"
-      - "erp.query_stock_by_name"
-      - "erp.create_stock_entry"
-      - "erp.transfer_stock"
-      - "erp.health"
-      - "crm.get_customer"
-      - "crm.get_customer_orders"
-      - "crm.create_order"
-      - "crm.health"
-      - "maps_*"
-      - "jp_*"
-    rate_limit: 1000/hour
-
-  workbuddy:
-    api_key: "mcp-gw-workbuddy-2026"
+    api_key: "<your-api-key>"
     allowed_tools:
       - "erp.query_stock"
       - "erp.query_stock_by_name"
@@ -41,7 +25,7 @@ agents:
     rate_limit: 1000/hour
 
   hr_agent:
-    api_key: "mcp-gw-hr-2026"
+    api_key: "<your-api-key>"
     allowed_tools:
       - "hr.*"
     rate_limit: 1000/hour
