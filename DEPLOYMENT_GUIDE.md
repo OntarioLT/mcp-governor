@@ -193,6 +193,32 @@ curl -s http://localhost:7680/auth/oauth-config
 
 启用后，Admin UI 登录页将显示"OAuth SSO"选项卡。只有拥有 `realm-admin` 角色的用户才能通过 SSO 登录 Admin UI。
 
+#### 7. 配置 Agent 认证（可选）
+
+Gateway 支持 API Key 和 JWT 两种 Agent 认证方式。编辑 `config/agents.yaml` 配置 Agent 身份和工具权限。
+
+参考示例文件 `config/agents.yaml.example`：
+
+```yaml
+# Agent 认证方式：
+#   - API Key: Authorization: ApiKey <api-key>（role 默认为 user）
+#   - JWT: Authorization: Bearer <jwt-token>（role 从 JWT token 获取）
+#
+# 注意：role 不在此配置，而是在 JWT/OAuth 认证时由外部系统提供
+# Agent 只负责：api_key 认证 + allowed_tools 工具白名单 + rate_limit 限流
+
+agents:
+  demo_agent:
+    api_key: "your-api-key-here"
+    allowed_tools:
+      - "erp.query_stock"
+      - "crm.get_customer"
+      - "maps_*"
+    rate_limit: 1000/hour
+```
+
+配置后 Admin UI → Tools 面板即可看到工具列表。修改 `config/agents.yaml` 后 Gateway 自动热加载，无需重启。
+
 ### 全场景 Demo（企业版）
 
 企业版镜像内置完整 Demo 包（含 LLM Agent 自动演示 14 场景），启动后下载即可体验。详见 [`demo/RUNBOOK_DEMO.md`](demo/RUNBOOK_DEMO.md)。
