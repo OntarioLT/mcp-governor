@@ -13,10 +13,7 @@
 
 services:
   mcp-governor:
-    build:
-      context: ../mcp-governor-private
-      dockerfile: Dockerfile.enterprise
-    image: mcp-governor:local
+    image: crpi-zv48h6itqo28pfxd.cn-hangzhou.personal.cr.aliyuncs.com/ontariolt/mcp-governor:enterprise-latest
     container_name: mcp-governor
     ports:
       - "7680:7680"
