@@ -54,4 +54,4 @@ package
 mcp-governor-demo/
 
 # Internal configs (contain API keys / sensitive URLs)
-config/agents.yamlconfig/agents.yaml
+config/agents.yaml
